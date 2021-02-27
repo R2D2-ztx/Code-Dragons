@@ -12,6 +12,17 @@ import java.io.PrintStream;
 
 public class GameLogic {
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
+
     public PrintStream out;
     public Prompt prompt;
     FireMagePath fireMagePath;
@@ -32,47 +43,49 @@ public class GameLogic {
     }
 
     public void start() {
-        out.println("        — Code & Dragons —\n" +
+        out.println("\n\t\t\t  — " + ANSI_RED + " Code " + ANSI_WHITE + "&" +  ANSI_RED + " Dragon " + ANSI_WHITE + "—\n" +
                 "\n" +
-                ">  A text-based RPG adventure simulator\n" +
-                ">  Three different characters with unique backstories and playability.\n" +
-                ">  Question and answer based game, where your decisions matter.\n" +
+                ">  A "+ ANSI_CYAN +"text-based RPG"+ ANSI_WHITE + " adventure simulator\n" +
+                ">  Three different "+ ANSI_CYAN +"characters with unique backstories"+ ANSI_WHITE +" and playability.\n" +
+                ">  Question and answer based game, where "+ ANSI_CYAN +"your decisions matter.\n" +  ANSI_WHITE +
                 ">  Every play-through is unique.\n" +
-                ">  Every ending saves in a pdf your unique story like a book…");
+                ">  Every ending "+ ANSI_CYAN +"saves in a pdf your unique story"+ ANSI_WHITE + " like a book…");
         userName();
     }
 
+
     public void userName(){
-
         StringInputScanner quest = new StringInputScanner();
-        quest.setMessage("\nTell me your name My Lord? ");
-        String name = prompt.getUserInput(quest);
+        quest.setMessage("\nTell me" +ANSI_GREEN+" your name "+ANSI_WHITE+"adventurer... ");
 
-        String[] options = {"Female", "Male", "Null, from Mars, Pastafari from Australia"};
+        String name = prompt.getUserInput(quest);
+        String[] options = {ANSI_WHITE+ "Female"+ANSI_RESET , ANSI_WHITE+"Male"+ANSI_RESET , ANSI_WHITE+"Null, from Mars, Pastafari from Australia"+ANSI_RESET };
         MenuInputScanner scanner = new MenuInputScanner(options);
-        scanner.setMessage("\nDo you want to specify your gender?");
+        scanner.setMessage("\nDo you want to " +ANSI_GREEN+"specify your"+ ANSI_WHITE + " gender?");
         int answerIndex = prompt.getUserInput(scanner);
 
         switch (answerIndex) {
             case 1 -> {
                 userName = name.concat(femaleWarriorName[frandom]);
-                out.println(name + "it is a beautiful name!\nI`m going to call you " + userName); }
+                System.out.println(ANSI_YELLOW +"\n\n"+ name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
             case 2 -> {
                 userName = name.concat(maleWarriorName[mrandom]);
-                out.println(name + "it is a beautiful name!\nI`m going to call you " + userName); }
+                System.out.println(ANSI_YELLOW +"\n\n"+name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
             case 3 -> {
                 userName = name.concat(nullWarriorName[nrandom]);
-                out.println(name + "it is a beautiful name!\nI`m going to call you " + userName);
+                System.out.println(ANSI_YELLOW +"\n\n"+name + ANSI_RESET +" is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET );
             }
         }
         chooseCharacter();
     }
 
+
     public void chooseCharacter() {
-        String[] options = {Players.FireMagePath.toString(),Players.CowardNinjaPath.toString(),Players.TankWarriorPath.toString()};
+        String[] options = {ANSI_RED+Players.FireMagePath.toString()+ANSI_WHITE,ANSI_CYAN+Players.CowardNinjaPath.toString()+ANSI_WHITE,ANSI_GREEN+Players.TankWarriorPath.toString()+ANSI_RESET};
         MenuInputScanner scanner = new MenuInputScanner(options);
-        scanner.setMessage("Welcome to the world of Code & Dragons, please choose your starter :\n");
+        scanner.setMessage("Welcome to the world of "+ANSI_RED+"Code & Dragons"+ANSI_WHITE+", please choose your " +ANSI_GREEN+"starter :"+ ANSI_RESET);
         int answerIndex = prompt.getUserInput(scanner);
+
 
         switch (answerIndex) {
             case 1 -> {
@@ -89,6 +102,10 @@ public class GameLogic {
 
     public void reStart() {
         start();
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }
 
