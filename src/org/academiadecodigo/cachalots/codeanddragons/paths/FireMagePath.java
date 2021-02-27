@@ -2,14 +2,25 @@ package org.academiadecodigo.cachalots.codeanddragons.paths;
 
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
+import org.academiadecodigo.cachalots.codeanddragons.gamelogic.GameLogic;
 import org.academiadecodigo.cachalots.codeanddragons.phrases.Questions1;
+
+import java.io.PrintStream;
 
 public class FireMagePath {
 
-    Prompt prompt = new Prompt(System.in, System.out);
+    public PrintStream out;
+    public Prompt prompt;
+    public GameLogic game;
+
+    public FireMagePath(PrintStream out, Prompt prompt) {
+        this.out  = out;
+        this.prompt = prompt;
+    }
 
     public void firepathStart() {
-        System.out.println("Fire mage, \n" +
+        game = new GameLogic(out,prompt);
+        out.println("Fire mage, \n" +
                 "\n" +
                 "You are a 15 year old prodigy fire mage. \n" +
                 "Though you are very intelligent and persuasive, \n" +

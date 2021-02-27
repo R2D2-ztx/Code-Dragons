@@ -8,12 +8,16 @@ import org.academiadecodigo.cachalots.codeanddragons.paths.FireMagePath;
 import org.academiadecodigo.cachalots.codeanddragons.paths.TankWarriorPath;
 import org.academiadecodigo.cachalots.codeanddragons.phrases.Players;
 
+import java.io.PrintStream;
+
 public class GameLogic {
 
-    Prompt prompt = new Prompt(System.in, System.out);
-    FireMagePath fireMagePath = new FireMagePath();
-    CowardNinjaPath cowardNinjaPath = new CowardNinjaPath();
-    TankWarriorPath tankWarriorPath = new TankWarriorPath();
+    public PrintStream out;
+    public Prompt prompt;
+    FireMagePath fireMagePath;
+    CowardNinjaPath cowardNinjaPath;
+    TankWarriorPath tankWarriorPath;
+
     String maleWarriorName[] = {" o safado", " caçadordeppk", " lindin"};
     String femaleWarriorName[] = {" a safada", " caçadoradeppk", " lindinha"};
     String nullWarriorName[] = {" safadx", " caçadxdeppk", " lindx"};
@@ -22,8 +26,13 @@ public class GameLogic {
     int nrandom = ((int) Math.floor(Math.random() * nullWarriorName.length));
     String userName = "";
 
+    public GameLogic(PrintStream out, Prompt prompt) {
+        this.out = out;
+        this.prompt = prompt;
+    }
+
     public void start() {
-        System.out.println("        — Code & Dragons —\n" +
+        out.println("        — Code & Dragons —\n" +
                 "\n" +
                 ">  A text-based RPG adventure simulator\n" +
                 ">  Three different characters with unique backstories and playability.\n" +
@@ -47,13 +56,13 @@ public class GameLogic {
         switch (answerIndex) {
             case 1 -> {
                 userName = name.concat(femaleWarriorName[frandom]);
-                System.out.println(name + "it is a beautiful name!\nI`m going to call you " + userName); }
+                out.println(name + "it is a beautiful name!\nI`m going to call you " + userName); }
             case 2 -> {
                 userName = name.concat(maleWarriorName[mrandom]);
-                System.out.println(name + "it is a beautiful name!\nI`m going to call you " + userName); }
+                out.println(name + "it is a beautiful name!\nI`m going to call you " + userName); }
             case 3 -> {
                 userName = name.concat(nullWarriorName[nrandom]);
-                System.out.println(name + "it is a beautiful name!\nI`m going to call you " + userName);
+                out.println(name + "it is a beautiful name!\nI`m going to call you " + userName);
             }
         }
         chooseCharacter();
@@ -66,9 +75,15 @@ public class GameLogic {
         int answerIndex = prompt.getUserInput(scanner);
 
         switch (answerIndex) {
-            case 1 -> { fireMagePath.firepathStart(); }
-            case 2 -> { cowardNinjaPath.cowardNinjaPath(); }
-            case 3 -> { tankWarriorPath.tankWarriorPath(); }
+            case 1 -> {
+                fireMagePath = new FireMagePath(out,prompt);
+                fireMagePath.firepathStart(); }
+            case 2 -> {
+                cowardNinjaPath = new CowardNinjaPath(out,prompt);
+                cowardNinjaPath.cowardNinjaStart(); }
+            case 3 -> {
+                tankWarriorPath = new TankWarriorPath(out,prompt);
+                tankWarriorPath.tankWarriorStart(); }
         }
     }
 
