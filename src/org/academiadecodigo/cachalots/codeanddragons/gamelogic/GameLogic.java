@@ -67,13 +67,13 @@ public class GameLogic {
         switch (answerIndex) {
             case 1 -> {
                 userName = name.concat(femaleWarriorName[frandom]);
-                System.out.println(ANSI_YELLOW +"\n\n"+ name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
+                out.println(ANSI_YELLOW +"\n\n"+ name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
             case 2 -> {
                 userName = name.concat(maleWarriorName[mrandom]);
-                System.out.println(ANSI_YELLOW +"\n\n"+name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
+                out.println(ANSI_YELLOW +"\n\n"+name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
             case 3 -> {
                 userName = name.concat(nullWarriorName[nrandom]);
-                System.out.println(ANSI_YELLOW +"\n\n"+name + ANSI_RESET +" is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET );
+                out.println(ANSI_YELLOW +"\n\n"+name + ANSI_RESET +" is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET );
             }
         }
         chooseCharacter();
@@ -81,7 +81,7 @@ public class GameLogic {
 
 
     public void chooseCharacter() {
-        String[] options = {ANSI_RED+Players.FireMagePath.toString()+ANSI_WHITE,ANSI_CYAN+Players.CowardNinjaPath.toString()+ANSI_WHITE,ANSI_GREEN+Players.TankWarriorPath.toString()+ANSI_RESET};
+        String[] options = {ANSI_RED+Players.FireMagePath.toString()+ANSI_RESET,ANSI_CYAN+Players.CowardNinjaPath.toString()+ANSI_RESET,ANSI_GREEN+Players.TankWarriorPath.toString()+ANSI_RESET};
         MenuInputScanner scanner = new MenuInputScanner(options);
         scanner.setMessage("Welcome to the world of "+ANSI_RED+"Code & Dragons"+ANSI_WHITE+", please choose your " +ANSI_GREEN+"starter :"+ ANSI_RESET);
         int answerIndex = prompt.getUserInput(scanner);

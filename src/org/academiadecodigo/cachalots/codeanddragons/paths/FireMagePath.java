@@ -60,9 +60,7 @@ public class FireMagePath {
                 " For you I have a mighty quest, complete it and "+ANSI_CYAN+"I shall reward you with my treasure chest.\"\n"+ ANSI_RESET);
         path2();
     }
-
     public void path2() {
-
         Set<String> options = new HashSet<>();
         options.add("yes");
         options.add("no");
@@ -70,21 +68,28 @@ public class FireMagePath {
         yesOrNo.setMessage(ANSI_WHITE+"Do you accept your Queen call? [yes] or [no] ?"+ ANSI_RESET);
         yesOrNo.setError(ANSI_YELLOW+ "Do not talk like that to Our Queen!!\n"+ ANSI_RESET);
         prompt.getUserInput(yesOrNo);
-        out.println(ANSI_PURPLE+"\n\nWitch Queen:"+ ANSI_RESET+ "\"My great "+ANSI_CYAN+"source of power"+ANSI_RESET+" has been stolen from me, and without it a bright future we shall not see.\n" +
-                "Without my magic this city will not live, so in your strength our people must believe.\n" +
-                "In my head a plan I have conceived, and complete success will be achieved.\n" +
-                "As "+ANSI_CYAN+"a present a mount "+ANSI_RESET+"I shall give, choose a steed and my artefact retrieve.\"\n");
-
         if (prompt.getUserInput(yesOrNo).equals("yes")) {
             path2Point1();
         } else {
             path2();
         }
     }
-    public void path2Point1(){
-//______________________________________________________
-        out.println(" trabalha aqui!!!");
+    private void path2Point1(){
+        String[] options = {ANSI_WHITE+ " OK, Were WE GOOO!!!!!"+ANSI_RESET,ANSI_WHITE+" Sure... (Fucking witch always asking me to do her job)"+ANSI_RESET,ANSI_WHITE+" Nod your head"+ANSI_RESET};
+        MenuInputScanner scanner = new MenuInputScanner(options);
+        scanner.setMessage(ANSI_PURPLE+"\n\nWitch Queen:"+ ANSI_RESET+ "\"My great "+ANSI_CYAN+"source of power"+ANSI_RESET+" has been stolen from me, and without it a bright future we shall not see.\n" +
+                "Without my magic this city will not live, so in your strength our people must believe.\n" +
+                "In my head a plan I have conceived, and complete success will be achieved.\n" +
+                "As "+ANSI_CYAN+"a present a mount "+ANSI_RESET+"I shall give, choose a steed and my artefact retrieve.\"\n");
+        int answerIndex = prompt.getUserInput(scanner);
+        switch (answerIndex) {
+            case 1, 2, 3 -> {path2Point2(); }
+        }
     }
-
-
+    private void path2Point2() {
+        //______________________________________
+        out.println(" trabalha aqui!!!");
+        out.println("One of the Witch Queen's servants guided you to her stables and presented you with three different steeds.One was a beautiful white \n" +
+                "Pegasus with silky white wings. The other was a regular horse. And the third one was a midget gnome.\n");
+    }
 }
