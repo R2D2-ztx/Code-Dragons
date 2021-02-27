@@ -29,7 +29,7 @@ public class TankWarriorPath {
     private boolean guessedTrollRiddle;
     private boolean gahBlessing;
 
-    public TankWarriorPath(PrintStream out, Prompt prompt) {
+    public TankWarriorPath(PrintStream out, Prompt prompt, String userName) {
         this.out = out;
         this.prompt = prompt;
     }

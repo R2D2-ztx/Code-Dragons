@@ -3,12 +3,16 @@ package org.academiadecodigo.cachalots.codeanddragons.gamelogic;
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
+import org.academiadecodigo.bootcamp.scanners.string.StringSetInputScanner;
 import org.academiadecodigo.cachalots.codeanddragons.paths.CowardNinjaPath;
 import org.academiadecodigo.cachalots.codeanddragons.paths.FireMagePath;
 import org.academiadecodigo.cachalots.codeanddragons.paths.TankWarriorPath;
+import org.academiadecodigo.cachalots.codeanddragons.phrases.Answers1;
 import org.academiadecodigo.cachalots.codeanddragons.phrases.Players;
 
 import java.io.PrintStream;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GameLogic {
 
@@ -25,17 +29,17 @@ public class GameLogic {
 
     public PrintStream out;
     public Prompt prompt;
-    FireMagePath fireMagePath;
-    CowardNinjaPath cowardNinjaPath;
-    TankWarriorPath tankWarriorPath;
+    public FireMagePath fireMagePath;
+    public CowardNinjaPath cowardNinjaPath;
+    public TankWarriorPath tankWarriorPath;
 
-    String maleWarriorName[] = {" o safado", " caçadordeppk", " lindin"};
-    String femaleWarriorName[] = {" a safada", " caçadoradeppk", " lindinha"};
-    String nullWarriorName[] = {" safadx", " caçadxdeppk", " lindx"};
-    int mrandom = ((int) Math.floor(Math.random() * maleWarriorName.length));
-    int frandom = ((int) Math.floor(Math.random() * femaleWarriorName.length));
-    int nrandom = ((int) Math.floor(Math.random() * nullWarriorName.length));
-    String userName = "";
+    private String maleWarriorName[] = {" o safado", " caçadordeppk", " lindin"};
+    private String femaleWarriorName[] = {" a safada", " caçadoradeppk", " lindinha"};
+    private String nullWarriorName[] = {" safadx", " caçadxdeppk", " lindx"};
+    public int mrandom = ((int) Math.floor(Math.random() * maleWarriorName.length));
+    public int frandom = ((int) Math.floor(Math.random() * femaleWarriorName.length));
+    public int nrandom = ((int) Math.floor(Math.random() * nullWarriorName.length));
+    public String userName = "";
 
     public GameLogic(PrintStream out, Prompt prompt) {
         this.out = out;
@@ -55,6 +59,7 @@ public class GameLogic {
 
 
     public void chooseUserName() throws InterruptedException {
+
         StringInputScanner quest = new StringInputScanner();
         quest.setMessage("\nTell me" +ANSI_GREEN+" your name "+ANSI_WHITE+"adventurer... ");
 
@@ -66,13 +71,13 @@ public class GameLogic {
 
         switch (answerIndex) {
             case 1 -> {
-                userName = name.concat(femaleWarriorName[frandom]);
+                this.userName = (name.concat(femaleWarriorName[frandom]));
                 out.println(ANSI_YELLOW +"\n\n"+ name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
             case 2 -> {
-                userName = name.concat(maleWarriorName[mrandom]);
+                this.userName = (name.concat(maleWarriorName[mrandom]));
                 out.println(ANSI_YELLOW +"\n\n"+name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
             case 3 -> {
-                userName = name.concat(nullWarriorName[nrandom]);
+                this.userName = (name.concat(nullWarriorName[nrandom]));
                 out.println(ANSI_YELLOW +"\n\n"+name + ANSI_RESET +" is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET );
             }
         }
@@ -89,23 +94,34 @@ public class GameLogic {
 
         switch (answerIndex) {
             case 1 -> {
-                fireMagePath = new FireMagePath(out,prompt);
+                fireMagePath = new FireMagePath(out,prompt,userName);
                 fireMagePath.firepathStart(); }
             case 2 -> {
-                cowardNinjaPath = new CowardNinjaPath(out,prompt);
+                cowardNinjaPath = new CowardNinjaPath(out,prompt,userName);
                 cowardNinjaPath.cowardNinjaStart(); }
             case 3 -> {
-                tankWarriorPath = new TankWarriorPath(out,prompt);
+                tankWarriorPath = new TankWarriorPath(out,prompt,userName);
                 tankWarriorPath.tankWarriorStart(); }
         }
     }
 
     public void reStart() throws InterruptedException {
-        start();
+        Set<String> options = new HashSet<>();
+        options.add("yes");
+        options.add("no");
+        StringSetInputScanner yesOrNo = new StringSetInputScanner(options);
+        yesOrNo.setMessage(ANSI_WHITE+"Do you want to try a different story? [yes] or [no] ?"+ ANSI_RESET);
+        yesOrNo.setError(ANSI_YELLOW+ "This is not valid your bastard !!\n"+ ANSI_RESET);
+        prompt.getUserInput(yesOrNo);
+        if (prompt.getUserInput(yesOrNo).equals("yes")) {
+            start();
+        } else {
+            out.println(Answers1.ANSWER_1);  // agradecimentoo
+            return;
+        }
     }
 
-    public String getUserName() {
-        return userName;
-    }
 }
+
+
 
