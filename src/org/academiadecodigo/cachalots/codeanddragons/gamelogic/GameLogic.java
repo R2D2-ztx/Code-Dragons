@@ -42,7 +42,7 @@ public class GameLogic {
         this.prompt = prompt;
     }
 
-    public void start() {
+    public void start() throws InterruptedException {
         out.println("\n\t\t\t  — " + ANSI_RED + " Code " + ANSI_WHITE + "&" +  ANSI_RED + " Dragon " + ANSI_WHITE + "—\n" +
                 "\n" +
                 ">  A "+ ANSI_CYAN +"text-based RPG"+ ANSI_WHITE + " adventure simulator\n" +
@@ -50,11 +50,11 @@ public class GameLogic {
                 ">  Question and answer based game, where "+ ANSI_CYAN +"your decisions matter.\n" +  ANSI_WHITE +
                 ">  Every play-through is unique.\n" +
                 ">  Every ending "+ ANSI_CYAN +"saves in a pdf your unique story"+ ANSI_WHITE + " like a book…");
-        userName();
+        chooseUserName();
     }
 
 
-    public void userName(){
+    public void chooseUserName() throws InterruptedException {
         StringInputScanner quest = new StringInputScanner();
         quest.setMessage("\nTell me" +ANSI_GREEN+" your name "+ANSI_WHITE+"adventurer... ");
 
@@ -80,7 +80,7 @@ public class GameLogic {
     }
 
 
-    public void chooseCharacter() {
+    public void chooseCharacter() throws InterruptedException {
         String[] options = {ANSI_RED+Players.FireMagePath.toString()+ANSI_RESET,ANSI_CYAN+Players.CowardNinjaPath.toString()+ANSI_RESET,ANSI_GREEN+Players.TankWarriorPath.toString()+ANSI_RESET};
         MenuInputScanner scanner = new MenuInputScanner(options);
         scanner.setMessage("Welcome to the world of "+ANSI_RED+"Code & Dragons"+ANSI_WHITE+", please choose your " +ANSI_GREEN+"starter :"+ ANSI_RESET);
@@ -100,7 +100,7 @@ public class GameLogic {
         }
     }
 
-    public void reStart() {
+    public void reStart() throws InterruptedException {
         start();
     }
 
