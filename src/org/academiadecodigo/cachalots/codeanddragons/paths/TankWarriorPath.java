@@ -10,7 +10,7 @@ public class TankWarriorPath {
     private final PrintStream out ;
     private final Prompt prompt;
 
-    public TankWarriorPath(PrintStream out, Prompt prompt) {
+    public TankWarriorPath(PrintStream out, Prompt prompt, String userName) {
         this.out = out;
         this.prompt = prompt;
     }
