@@ -42,7 +42,6 @@ public class TankWarriorPath {
         gahBlessing = true;
     }
 
-
     public TankWarriorPath(PrintStream out, Prompt prompt, String userName) {
         this.out  = out;
         this.prompt = prompt;
@@ -52,13 +51,14 @@ public class TankWarriorPath {
     public void tankPathStart() throws InterruptedException {
 
         gameLogic = new GameLogic(out,prompt);
-        out.println(ANSI_RED+ " \n\n\uD83D\uDD25\uD83D\uDD25 Fire mage \uD83D\uDD25\uD83D\uDD25 \n" +ANSI_RESET+
+        out.println(ANSI_CYAN+ " \n\n\uD83D\uDD25\uD83D\uDD25 Tank Warrior \uD83D\uDD25\uD83D\uDD25 \n" +ANSI_RESET+
                 "\n" +
-                " You are a 15 year old prodigy "+ANSI_RED+"fire mage. \n" +ANSI_RESET+
-                " Though you are very intelligent and persuasive," +
-                " but you still very immature for your age!\n \n" +
+                " One of the strongest warriors in all kingdom" +
+                " Possesses the strength of a thousand turtle shells" +
+                "When he was a baby he fell into a lake, damaging his brain" +
+                "(he is a retard)\n \n" +
                 " Commands :\n" +
-                ANSI_RED+" /fireBall;   /persuade;   /babyTalk; "+ANSI_RESET);
+                ANSI_CYAN+" /huh...;   /smash;   /runThrough; "+ANSI_RESET);
         Thread.sleep(2000);
         out.println(ANSI_PURPLE +" ~~~USE THEM WISELY!~~~ "+ ANSI_RESET + "\n");
         worldSetup();
@@ -78,7 +78,7 @@ public class TankWarriorPath {
         Thread.sleep(2500);
         out.println(" Suddenly you hear the QUEEN calling and go to her castle with utmost urgency.\n\n");
         Thread.sleep(3000);
-        out.println(ANSI_PURPLE+" QUEEN:" +ANSI_RESET+" \"Come, " +ANSI_RED+ userName + ANSI_RESET+", you are my chosen one. Without your help this country will be done.");
+        out.println(ANSI_PURPLE+" QUEEN:" +ANSI_RESET+" \"Come, " +ANSI_CYAN+ userName + ANSI_RESET+", you are my chosen one. Without your help this country will be done.");
         Thread.sleep(2500);
         out.println(" During the last raid we suffered much loss, and to save us all, the country you shall cross.");
         Thread.sleep(2500);
@@ -98,16 +98,16 @@ public class TankWarriorPath {
         if (resp.equals("yes")) {
             out.println("\n I knew you would choose that.\n");
             Thread.sleep(1000);
-            fireMageQuest();
+            tankWarriorQuest();
         } else {
             acceptQuest();
         }
     }
 
-    private void fireMageQuest() throws InterruptedException {
+    private void tankWarriorQuest() throws InterruptedException {
         String[] options = {"OK, Were WE GOOO!!!!!", "Sure... (Fucking QUEEN always asking me to do her job)", "Nod your head"};
         MenuInputScanner scanner = new MenuInputScanner(options);
-        scanner.setMessage(ANSI_PURPLE+"\n\n QUEEN says: " + ANSI_RESET);
+        scanner.setMessage("\n What do you answer? ");
         out.println(" \"My great "+ANSI_CYAN+"source of power"+ANSI_RESET+" has been stolen from me, and without it a bright future we shall not see.");
         Thread.sleep(2000);
         out.println(" Without my magic this city will not live, so in your strength our people must believe.");
@@ -125,9 +125,11 @@ public class TankWarriorPath {
         String[] options = {"Pegasus", "Regular horse", "Midget gnome"};
         MenuInputScanner horse = new MenuInputScanner(options);
         horse.setMessage("\n One of the QUEEN's servants guided you to her stables and presented you with three different steeds.One was a beautiful white \n" +
-                ANSI_CYAN + " Pegasus" + ANSI_RESET + " with silky white wings. The other was a " + ANSI_CYAN + "regular horse" + ANSI_RESET + ". And the third one was a " + ANSI_CYAN + "midget gnome" + ANSI_RESET + ".\n" + " Choose a steed Adventurer, call for it´s name: ");
+                ANSI_CYAN + " Pegasus" + ANSI_RESET + " with silky white wings. The other was a " + ANSI_CYAN + "regular horse" + ANSI_RESET +
+                ". And the third one was a " + ANSI_CYAN + "midget gnome" + ANSI_RESET + ".\n" + " Choose a steed Adventurer, call for it´s name: ");
         horse.setError(ANSI_YELLOW + " You must pick a steed Adventurer!\n" + ANSI_RESET);
         int answerIndex = prompt.getUserInput(horse);
+        Thread.sleep(2000);
         switch (answerIndex) {
             case 1 -> pegasusHorsePath();
             case 2 -> regularHorsePath();
@@ -138,14 +140,12 @@ public class TankWarriorPath {
     private void pegasusHorsePath() throws InterruptedException {
         //Pegasus
 
-        out.println("\n\n You have chosen the "+ANSI_CYAN+"might Pegasus"+ANSI_RESET+", one of the rares magical creatures in this world.\n " +
-                "With it you can cross the lands admiring your world through a beautifully sky..."+ ANSI_RESET);
-
-        StringInputScanner enterToContinue = new StringInputScanner();
-        enterToContinue.setMessage(ANSI_RED+ "\n Scream!!"+ANSI_RESET+ "Let your flying roar come out so the whole world can listen:\n");
-        prompt.getUserInput(enterToContinue);
-        out.println("\n");
-        cityGeral();
+        out.println("\n\n You have chosen the "+ANSI_CYAN+"might Pegasus"+ANSI_RESET+", one of the rares magical creatures in this world.");
+        Thread.sleep(200);
+        out.println("With it you can cross the lands admiring your world through a beautifully sky..."+ ANSI_RESET);
+        Thread.sleep(200);
+        out.println(ANSI_RED+ "Suddenly you fall!!"+ANSI_RESET+" There is no hope, you are too heavy to fly on this majestic beast.");
+        gameLogic.reStart();
     }
 
     private void regularHorsePath() throws InterruptedException {
@@ -167,22 +167,27 @@ public class TankWarriorPath {
 
     private void gnomeHorsePath() throws InterruptedException {
         //Gnome
-        out.println("\n\n You have chosen the "+ANSI_CYAN+"Gnome, "+ANSI_RESET+"an old midget gnome. \n" +
-                "Little did you know that he was a teenage loving perv. He suddenly grabs you and whispers in your young ears...");
+        out.println("\n\n You have chosen the "+ANSI_CYAN+"Gnome, "+ANSI_RESET+"an old midget gnome. \n");
         Thread.sleep(2000);
-        out.println(ANSI_PURPLE+" Gnome: "+ANSI_RESET+"\"Come my little.... my sweet, sweet child... I will take you to my playroom... we are going to have "+ANSI_GREEN+"soooo much fun playing my"+ANSI_RESET+" games... hihi\"");
+        out.println(" In you first try you just smashed the little fella with your enormous height");
         Thread.sleep(2000);
-        out.println(" You cannot get rid of the gnome, you try to "+ANSI_RED+"/fireBall;"+ANSI_RESET+" but nothing happens, the perv is not only taking your virginity, but also draining your magic" );
+        out.println(" You have accepted your fate and start your trip anyway. Felling a little bit bad with your first death pressuring your shoulders");
         Thread.sleep(2000);
-        out.println(" You are hopeless and have nowhere to go ...");
-        Thread.sleep(2000);
-        out.println(" You have accepted your fate, raped by a gnome on his midget playroom ");
-        Thread.sleep(2000);
-        out.println(ANSI_RED+" ...you died... \n"+ANSI_RESET);
-        Thread.sleep(2000);
-        out.println(ANSI_RED + Answers1.ANSWER_1.toString().toUpperCase());
-        gameLogic.reStart();
-        //death method/ path to restart ou intaresetart / as it is now//
+        Set<String> pathOptions = new HashSet<>();
+        pathOptions.add("forest");
+        pathOptions.add("valley");
+        StringSetInputScanner nextPath = new StringSetInputScanner(pathOptions);
+        nextPath.setMessage("\n\n You walked night and day...\n For 5 days, you have traveled and now you have to choose, will our adventurer cross the"+ANSI_GREEN+" forest"+ANSI_RESET+" or will he climb the"+ANSI_GREEN+" valley?\n\n"+ANSI_RESET);
+        nextPath.setError(ANSI_YELLOW+ "Don´t be a Coward! walk through a path that leads you to your Queen quest!\n"+ ANSI_RESET);
+        String patchChosen = prompt.getUserInput(nextPath);
+        if (patchChosen.equals("forest")) {
+            forestStart();
+            //forest
+        } else if (patchChosen.equals("valley")) {
+            valleyStart();
+            //valley
+        }
+
     }
 
     private void forestStart() throws InterruptedException {
@@ -194,88 +199,77 @@ public class TankWarriorPath {
         Thread.sleep(2000);
         out.println(" \"Never take another one!\"");
         Thread.sleep(2000);
-        fennyFightFireMage();
+        fennyFightTankWarrior();
     }
 
-    private void fennyFightFireMage() throws InterruptedException {
+    private void fennyFightTankWarrior() throws InterruptedException {
         //forest
-        Set<String> lennyOptions = new HashSet<>();
-        lennyOptions.add("/tellAjoke;");
-        lennyOptions.add("/babyTalk;");
-        lennyOptions.add("/fireBall;");
-        lennyOptions.add("/persuade;");
-        StringSetInputScanner lenny = new StringSetInputScanner(lennyOptions);
-        lenny.setMessage("\n You are now facing a "+ANSI_PURPLE+"midget gnome!"+ANSI_RESET+" Quick do your move: ");
-        lenny.setError(ANSI_YELLOW+ " Did you really forgot your OWN character commands? Pity... \n"+ ANSI_RESET);
-        String lennyChosen = prompt.getUserInput(lenny);
+        Set<String> fennyOptions = new HashSet<>();
+        fennyOptions.add("/tellAjoke;");
+        fennyOptions.add("/huh...;");
+        fennyOptions.add("/smash;");
+        fennyOptions.add("/runThrough;");
+        StringSetInputScanner fenny = new StringSetInputScanner(fennyOptions);
+        fenny.setMessage("\n You are now facing a "+ANSI_PURPLE+"midget gnome!"+ANSI_RESET+" Quick do your move: ");
+        fenny.setError(ANSI_YELLOW+ " Did you really forgot your OWN character commands? Pity... \n"+ ANSI_RESET);
+        String lennyChosen = prompt.getUserInput(fenny);
         if (lennyChosen.equals("/tellAjoke;")) {
-            out.println(" \n\n You called the "+ANSI_RED+"ancestral language"+ANSI_RESET+", known by few! Your eyes glow and you shout ou laud, rephrasing the voices on your head:");
+            out.println(" \n\n You called the "+ANSI_CYAN+"ancestral language"+ANSI_RESET+", known by few! Your eyes glow and you shout ou laud, rephrasing the voices on your head:");
             Thread.sleep(2000);
-            out.println(ANSI_RED+ " " + userName +ANSI_RESET+": Encontrei um sapo dentro do meu computador. Agora tenho mais memória-rã!");
+            out.println(ANSI_CYAN+ " " + userName +ANSI_RESET+": Encontrei um sapo dentro do meu computador. Agora tenho mais memória-rã!");
             Thread.sleep(2000);
-            out.println(ANSI_PURPLE+" Lenny"+ANSI_RESET+" understood the ancient language using his Gnome senses and starts laughing so hard that he forgot you even exist...");
+            out.println(ANSI_PURPLE+" Fenny"+ANSI_RESET+" understood the ancient language using his Gnome senses and starts laughing so hard that he forgot you even exist...");
             Thread.sleep(2000);
             out.println(" You crossed the "+ANSI_GREEN+"forest"+ANSI_RESET+" safely!");
             cityGeral();
 
-        } else if (lennyChosen.equals("/babyTalk;")) {
-            out.println("\n You start making a scene, crying like a wu baby with the expectation that the gnome would let tou go...");
+        } else if (lennyChosen.equals("/runThrough;")) {
+            out.println(" You didnt even care about this little Gnome, and start to walk your path");
             Thread.sleep(2000);
-            out.println("\n But he starts to get horny, you are giving the gnome every possible reason for him to rape you. He grabs your leg and starts to rub his material on your foot.");
+            out.println(" He starts to attack");
             Thread.sleep(2000);
-            out.println(" You cannot get rid of the gnome, you try to "+ANSI_RED+"/fireBall;"+ANSI_RESET+" but nothing happens, the perv is not only taking your virginity, but also draining your magic" );
+            out.println(" You even felt a little bit guilty for killing the other Gnome and decides to, just continuous");
             Thread.sleep(2000);
-            out.println(" You are hopeless and have nowhere to go ...");
-            Thread.sleep(2000);
-            out.println(" You have accepted your fate, raped by a gnome ");
-            Thread.sleep(2000);
-            out.println(ANSI_RED+" ...you died... \n"+ANSI_RESET);
-            Thread.sleep(2000);
-            gameLogic.reStart();
-
-
-        } else if (lennyChosen.equals("/fireBall;")){
-            //kills gnome
-            out.print("\n\n You called all your strength, the air starts to heat up, it becomes hard to breath...");
-            Thread.sleep(2000);
-            out.print("\n "+ANSI_PURPLE+"Lenny"+ANSI_RESET+" is felling the heat and starts to regret his threat. You raise your staff and a light forms on top of it...");
-            Thread.sleep(2000);
-            out.print("\n You cast a "+ANSI_RED+"/fireBall;"+ANSI_RESET+" and it lunches directly to "+ANSI_PURPLE+"Lenny"+ANSI_RESET+". He cannot run, and dies purged by fire!");
-            Thread.sleep(2000);
-            out.print("\n While going away you spit on the dead gnome ashes, like the little prick you are!\n");
             cityGeral();
-        } else if (lennyChosen.equals("/persuade;")){
-            out.println("\n" + userName + "!!!! tried to "+ANSI_RED+"/persuade;"+ANSI_RESET+", but it is not very effective.");
-            fennyFightFireMage();
+
+
+        } else if (lennyChosen.equals("/smash;")) {
+            //kills gnome
+            out.print(" You called all your strength and with just one hand smashes that little one");
+            Thread.sleep(2000);
+            out.println(" Maybe killing all this Gnomes are making this trip a bit more fun\n");
+            cityGeral();
+        } else if (lennyChosen.equals("/huh...;")){
+            out.println("\n" + userName + "!!!! tried to "+ANSI_CYAN+"/huh...;"+ANSI_RESET+", but it is not very effective.");
+            fennyFightTankWarrior();
         }
     }
 
     private void valleyStart() throws InterruptedException {
-        out.println(" \nWhile wandering around the Valley of Death you felt something watching you... From the shadows... " );
+        out.println("\n While wandering around the Valley of Death you felt something watching you... From the shadows... " );
         Thread.sleep(2000);
-        out.print("\n After feeling a tingle in your spine you decided to search for the strange figure. Suddenly a human-like creature emerged from the shadow.");
+        out.println(" After feeling a tingle in your spine you decided to search for the strange figure. Suddenly a human-like creature emerged from the shadow.");
         Thread.sleep(2000);
-        out.print(" \n"+ANSI_PURPLE+"Shadow Priest"+ANSI_RESET+": \"Do you know what happens to those who wander in the Valley of Death? \"");
+        out.println(ANSI_PURPLE+" Shadow Priest"+ANSI_RESET+": \"Do you know what happens to those who wander in the Valley of Death? \"");
         Thread.sleep(2000);
         out.print(" \n Have you not been wondering why nothing can live in this deserted valley? In order to be immortal i have to sap the life force of everything around me.\"" );
         Thread.sleep(2000);
         out.print(" \n And YOU are next!\"");
         Thread.sleep(2000);
-        priestFightFireMage();
+        priestFightTankWarrior();
     }
 
-    private void priestFightFireMage() throws InterruptedException {
+    private void priestFightTankWarrior() throws InterruptedException {
         Set<String> setPriest = new HashSet<>();
-        setPriest.add("/vim");
-        setPriest.add("/babyTalk;");
-        setPriest.add("/fireBall;");
-        setPriest.add("/persuade;");
+        setPriest.add("/vim;");
+        setPriest.add("/huh...;");
+        setPriest.add("/smash;");
+        setPriest.add("/runThrough;");
         StringSetInputScanner scannerPriest = new StringSetInputScanner(setPriest);
 
         scannerPriest.setMessage(ANSI_WHITE+"\n You are now facing a "+ANSI_PURPLE+"Shadow Priest!"+ANSI_RESET+" Quick do your move: "+ANSI_RESET);
         scannerPriest.setError(ANSI_YELLOW+ " Did you really forgot your OWN character commands? Pity... \n"+ ANSI_RESET);
         String priestChoice = prompt.getUserInput(scannerPriest);
-
 
         if (priestChoice.equals("/vim;")) {
 
@@ -283,39 +277,36 @@ public class TankWarriorPath {
             Thread.sleep(2000);
             out.print(" \nThe" +ANSI_PURPLE+"Shadow Prist"+ANSI_RESET+" gets exited, he loves Vim and tells you his real name... Alexio.");
             Thread.sleep(2000);
-            out.print(" \nBoth of you light up a joint, smoke it together and code for hours uncounted... After those wonderful moments you go your way, out of the valley!");
+            out.print("\n Both of you light up a joint, smoke it together and code for hours uncounted... After those wonderful moments you go your way, out of the valley!");
             cityGeral();
 
-        } else if (priestChoice.equals("/babyTalk;")) {
+        } else if (priestChoice.equals("/smashes;")) {
 
-            out.println("\n You start making a scene, crying like a wu baby with the expectation that the Priest would let tou go...");
+            out.println("\n You called all your strength and try to hit the " + ANSI_PURPLE + "Shadow Prist" + ANSI_RESET + "but he is very fast");
             Thread.sleep(2000);
-            out.print("\n He completely ignores your cries and will not let you cross his path!");
-            priestFightFireMage();
+            out.print("\n He completely got you with his splashes of saint water, you dont believe what is happening...");
+            Thread.sleep(2000);
+            out.println(" somehow you gab his rob and hit hard in his chin, the " + ANSI_PURPLE + "Shadow Prist" + ANSI_RESET + " is hesitating and felt down");
+            Thread.sleep(2000);
+            out.println(" Fast as you can you gab him and cut his body in two parts with your bear hands, his is probably with the devil now");
+            Thread.sleep(2000);
+            cityGeral();
+        }
 
-        } else if (priestChoice.equals("/fireBall;")){
+        else if (priestChoice.equals("/huh...;")){
+            out.println("\n" + userName + "!!!! tried to "+ANSI_CYAN+"/huh...;"+ANSI_RESET+", but it is not very effective.");
+            priestFightTankWarrior();
 
-            //Pist consules magic and kills you
+        } else if (priestChoice.equals("/runThrough;")){
 
-            out.print("\n\n You called all your strength, the air starts to heat up, becoming hard to breathe.");
+            out.print("\n You couldn't just walk out, the "+ANSI_PURPLE+"Shadow Priest"+ANSI_RESET+"got you with his splashes of saint water, you dont believe what is happening ");
             Thread.sleep(2000);
-            out.print("\n "+ANSI_PURPLE+"Shadow Priest"+ANSI_RESET+" is felling the heat, he loves it. You raise your staff and a light forms on top of it...");
+            out.print("\n He laughs at you, he was born in the Devils fire. The Priest looks at you and in seconds your fear consumes you.");
             Thread.sleep(2000);
-            out.print("\n You cast a "+ANSI_RED+"/fireBall;"+ANSI_RESET+" and it lunches directly to the "+ANSI_PURPLE+"Shadow Priest"+ANSI_RESET+". But nothing happens!");
+            out.println(" Fast as you can, you gab him! but this is just his robe, was a trap.");
             Thread.sleep(2000);
-            out.print("\n He laughs at you, he was born by fire, using it will only increase his power. The Priest locks at you and in seconds your fear consumes you.");
-            Thread.sleep(2000);
-            out.print("\n The"+ANSI_PURPLE+"Shadow Priest"+ANSI_RESET+" raises his hand, casting his own"+ANSI_RED+"/fireBall;"+ANSI_RESET+"you instantly die!");
+            out.println(" He puts you in his huge calaboose, everything is dark and you hear: \"" +ANSI_RED+"you are with the devil now" +ANSI_RESET);
             gameLogic.reStart();
-
-        } else if (priestChoice.equals("/persuade;")){
-
-            out.print(" \nYou try to reach you unique persuasion abilities. You talk directly to the "+ANSI_PURPLE+"Shadow Priest "+ANSI_RESET);
-            Thread.sleep(2000);
-            out.print(" \nAfter a long conversation about your quest, the Priest said: \" You are cool\" and lets you go.");
-            Thread.sleep(2000);
-            out.print(" \nYou persuasion abilities worked with "+ANSI_CYAN+"Great Success!"+ANSI_RESET);
-            cityGeral();
 
         }
     }
@@ -537,38 +528,39 @@ public class TankWarriorPath {
         out.println("MARION the Dragon ->  \"Rawrrrr xD !!! Who are you who tried to steal from me, MARION the last of the Dragonkind?!");
         Thread.sleep(2000);
         out.println("                        You will pay for this with your life!! I shall burn you to a crisp!\"");
-        fireMageDragonFight();
+        tankWarriorDragonFight();
 
     }
 
-    private void fireMageDragonFight() throws InterruptedException {
+    private void tankWarriorDragonFight() throws InterruptedException {
 
         if(guessedDrunkRiddle == true && guessedTrollRiddle == true){
 
             Set<String> setDragonSpecial = new HashSet<>();
-            setDragonSpecial.add("/babyTalk;");
-            setDragonSpecial.add("/fireBall;");
-            setDragonSpecial.add("/persuade;");
+            setDragonSpecial.add("/huh...;");
+            setDragonSpecial.add("/smash;");
+            setDragonSpecial.add("/runThrough;");
             setDragonSpecial.add("/throwGold;");
             StringSetInputScanner scannerDragon = new StringSetInputScanner(setDragonSpecial);
 
-            scannerDragon.setMessage("The dragon seems to want to fight. What will you do? \n [Having answered correctly to the two riddles you have gained the /throwGold; command which will allow you to distract the dragon\n by throwing the gold ore THIGO gave you and once its obssessed over it you take what you want and run away!]");
+            scannerDragon.setMessage("The dragon seems to want to fight. What will you do? \n [Having answered correctly to the two riddles you have gained the /throwGold; command which will allow you to distract the dragon\n by throwing the gold ore THIGO gave you and once its obsessed over it you take what you want and run away!]");
             scannerDragon.setError(ANSI_YELLOW+ " Did you really forgot your OWN character commands? Pity... \n"+ ANSI_RESET);
             String dragonChoice = prompt.getUserInput(scannerDragon);
 
-            if(dragonChoice.equals("/babyTalk;")){
+            if(dragonChoice.equals("/huh...")){
                 if(gahBlessing == true){
-                    out.println("\n You start making a scene, crying like a wu baby with the expectation that MARION would let tou go...");
                     Thread.sleep(2000);
-                    out.println(" She doesnt really care about your cries and engulfs you in a massive ball of fire!");
+                    out.println("\n MARION didnt like how that sounds and starts to get a little angry...");
+                    Thread.sleep(2000);
+                    out.println(" She got worst and through a massive ball of fire on you!");
                     Thread.sleep(2000);
                     out.println(" You are still alive?? Of course!!!! You have Gah's Blessing and are immune to fire!!");
-                    fireMageDragonFight();
+                    tankWarriorDragonFight();
                 }
-
-                out.println("\n You start making a scene, crying like a wu baby with the expectation that MARION would let tou go...");
                 Thread.sleep(2000);
-                out.println(" She doesnt seem to care about your cries and just bbq's you...");
+                out.println("\n MARION didnt like how that sounds and starts to get a little angry...");
+                Thread.sleep(2000);
+                out.println(" She got worst and through a massive ball of fire on you! like you wore nothing and laughed in a sadistic way");
                 gameLogic.reStart();
             }
             if(dragonChoice.equals("/fireBall;")){
@@ -580,7 +572,7 @@ public class TankWarriorPath {
                 Thread.sleep(2000);
                 out.println(" Maybe try something else...");
                 Thread.sleep(2000);
-                fireMageDragonFight();
+                tankWarriorDragonFight();
             }
             if(dragonChoice.equals("/persuade;")){
 
@@ -721,21 +713,21 @@ public class TankWarriorPath {
     }
 
     private void ending() throws InterruptedException {
-        out.println("QUEEN CLÁUDIA was left very emotional so you decided to leave her alone in this sensitive moment.");
+        out.println(" QUEEN CLÁUDIA was left very emotional so you decided to leave her alone in this sensitive moment.");
         Thread.sleep(2000);
-        out.println("While walking away from her you start thinking about what you are going to do with all that treasure. Suddenly...");
-        Thread.sleep(2000);
-        out.println("...");
+        out.println(" While walking away from her you start thinking about what you are going to do with all that treasure. Suddenly...");
         Thread.sleep(2000);
         out.println("...");
         Thread.sleep(2000);
-        out.println("You were pierced through the heart!!! You look back at your QUEEN in disbelief");
+        out.println(" ...");
         Thread.sleep(2000);
-        out.println("QUEEN CLÁUDIA ->  \"I'm truly sorry my brave adventurer, but this information must be kept secret at all costs. Our enemies must never learn the truth");
+        out.println(" You were pierced through the heart!!! You look back at your QUEEN in disbelief");
         Thread.sleep(2000);
-        out.println("                    Not even you can be trusted. It pains me to do this but it's for the good of all the kingdom. Goodbye " + userName + "\"");
+        out.println(" QUEEN CLÁUDIA ->  \"I'm truly sorry my brave adventurer, but this information must be kept secret at all costs. Our enemies must never learn the truth");
         Thread.sleep(2000);
-        out.println(ANSI_RED + "YOU ARE DEAD  < = GAME OVER = >" + ANSI_RESET);
+        out.println("                     Not even you can be trusted. It pains me to do this but it's for the good of all the kingdom. Goodbye " + userName + "\"");
+        Thread.sleep(2000);
+        out.println(ANSI_RED + " YOU ARE DEAD  < = GAME OVER = > " + ANSI_RESET);
         gameLogic.reStart();
     }
 
