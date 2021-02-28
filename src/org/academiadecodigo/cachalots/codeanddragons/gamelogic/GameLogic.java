@@ -98,10 +98,10 @@ public class GameLogic {
                 fireMagePath.firepathStart(); }
             case 2 -> {
                 cowardNinjaPath = new CowardNinjaPath(out,prompt,userName);
-                cowardNinjaPath.cowardNinjaStart(); }
+                cowardNinjaPath.cowardPathStart(); }
             case 3-> {
                 tankWarriorPath = new TankWarriorPath(out,prompt,userName);
-                tankWarriorPath.tankWarriorStart(); }
+                tankWarriorPath.tankPathStart(); }
 
         }
     }

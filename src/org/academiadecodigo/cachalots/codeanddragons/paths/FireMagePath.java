@@ -739,30 +739,6 @@ public class FireMagePath {
         gameLogic.reStart();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
