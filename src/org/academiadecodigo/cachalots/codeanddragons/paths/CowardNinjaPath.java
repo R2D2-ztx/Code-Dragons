@@ -56,7 +56,7 @@ public class CowardNinjaPath {
                 "You are one of the elite "+ANSI_GREEN+"ninjas"+ANSI_RESET+" that were trained in the forest of Gongqing. \n" +
                 "Master of the occult arts of running away, you developed an eating disorder becoming the thiccest of ninjas.\n\n" +
                 " Commands :\n" +
-                        ANSI_RED+" /hide;   /shadowKunai;   /runAway; "+ANSI_RESET);
+                ANSI_RED+" /hide;   /shadowKunai;   /runAway; "+ANSI_RESET);
         Thread.sleep(2000);
         out.println(ANSI_PURPLE +" ~~~USE THEM WISELY!~~~ "+ ANSI_RESET + "\n");
         worldSetup();
