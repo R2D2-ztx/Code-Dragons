@@ -117,7 +117,8 @@ public class GameLogic {
         if (choice.equals("yes")) {
             start();
         } else {
-            out.println(Answers1.ANSWER_1);  // agradecimentoo
+            out.println(ANSI_RED + Answers1.ANSWER_1.toString().toUpperCase());
+            out.println("\n" + Answers1.ANSWER_2);  // agradecimentoo
             return;
         }
     }

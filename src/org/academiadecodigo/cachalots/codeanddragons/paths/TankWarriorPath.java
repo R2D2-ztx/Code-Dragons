@@ -62,10 +62,10 @@ public class TankWarriorPath {
                 ANSI_BLUE + " /huh...;   /smash;   /runThrough; " + ANSI_RESET + "\n");
         Thread.sleep(2000);
         out.println(ANSI_PURPLE +" ~~USE THEM WISELY!~~~ "+ ANSI_RESET + "\n");
-        path1();
+        worldSetup();
     }
 
-    public void path1() throws InterruptedException {
+    public void worldSetup() throws InterruptedException {
 
         Thread.sleep(2500);
         out.println(" The year is 325 000 D.F. Magic has emerged on this world and with it, mysterious creatures populated the land.");
@@ -81,10 +81,10 @@ public class TankWarriorPath {
         out.println(" During the last raid we suffered much loss, and to save us all, the country u shall cross.");
         Thread.sleep(2500);
         out.println(" For you I have a mighty quest, complete it and "+ANSI_CYAN+"I shall reward you with my treasure chest.\"\n"+ ANSI_RESET);
-        path2();
+        acceptQuest();
     }
 
-    public void path2() throws InterruptedException {
+    public void acceptQuest() throws InterruptedException {
         Set<String> options = new HashSet<>();
         options.add("yes");
         options.add("no");
@@ -95,13 +95,13 @@ public class TankWarriorPath {
         if (resp.equals("yes")) {
             out.println("\n I knew you would choose that.\n");
             Thread.sleep(1000);
-            path2Point1();
+            tankQuest();
         } else {
-            path2();
+            acceptQuest();
         }
     }
 
-    private void path2Point1() throws InterruptedException {
+    private void tankQuest() throws InterruptedException {
         String[] options = {ANSI_WHITE+ " Huh..."+ANSI_RESET,ANSI_WHITE+" Yes Kween, me smash!"+ANSI_RESET,ANSI_WHITE+" Huh..."+ANSI_RESET};
         MenuInputScanner scanner = new MenuInputScanner(options);
         scanner.setMessage(ANSI_PURPLE+"\n\n Witch Queen says: ");
@@ -144,8 +144,8 @@ public class TankWarriorPath {
         String patchChosen = prompt.getUserInput(nextPath);
 
         if (patchChosen.equals("yes")) {
-            path2Point1();
-        } else path2();
+            //7path2Point1();
+        }  //path2();
 
     }
     private void path2Point3_1() throws InterruptedException {
