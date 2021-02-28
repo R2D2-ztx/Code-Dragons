@@ -3,8 +3,8 @@ package org.academiadecodigo.cachalots.codeanddragons.phrases;
 public enum Players {
 
         FireMagePath("Fire mage"),
-        CowardNinjaPath("Tank Warrior"),
-        TankWarriorPath("Coward Ninja");
+        CowardNinjaPath("Coward Ninja"),
+        TankWarriorPath("Tank Warrior");
 
         private final String text;
 

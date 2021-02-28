@@ -53,7 +53,7 @@ public class GameLogic {
                 ">  Three different "+ ANSI_CYAN +"characters with unique backstories"+ ANSI_WHITE +" and playability.\n" +
                 ">  Question and answer based game, where "+ ANSI_CYAN +"your decisions matter.\n" +  ANSI_WHITE +
                 ">  Every play-through is unique.\n" +
-                ">  Every ending "+ ANSI_CYAN +"saves in a pdf your unique story"+ ANSI_WHITE + " like a book…");
+                ">  Every ending "+ ANSI_CYAN +"saves in a pdf your unique story"+ ANSI_WHITE + " like a book…"+ANSI_RESET);
         chooseUserName();
     }
 
@@ -61,7 +61,7 @@ public class GameLogic {
     public void chooseUserName() throws InterruptedException {
 
         StringInputScanner quest = new StringInputScanner();
-        quest.setMessage("\nTell me" +ANSI_GREEN+" your name "+ANSI_WHITE+"adventurer... ");
+        quest.setMessage("\nTell me" +ANSI_GREEN+" your name "+ANSI_WHITE+"adventurer... " + ANSI_RESET);
 
         String name = prompt.getUserInput(quest);
         String[] options = {ANSI_WHITE+ "Female"+ANSI_RESET , ANSI_WHITE+"Male"+ANSI_RESET , ANSI_WHITE+"Null, from Mars, Pastafari from Australia"+ANSI_RESET };
@@ -72,13 +72,13 @@ public class GameLogic {
         switch (answerIndex) {
             case 1 -> {
                 this.userName = (name.concat(femaleWarriorName[frandom]));
-                out.println(ANSI_YELLOW +"\n\n"+ name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
+                out.println(ANSI_YELLOW +"\n\n "+ name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
             case 2 -> {
                 this.userName = (name.concat(maleWarriorName[mrandom]));
-                out.println(ANSI_YELLOW +"\n\n"+name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
+                out.println(ANSI_YELLOW +"\n\n "+name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
             case 3 -> {
                 this.userName = (name.concat(nullWarriorName[nrandom]));
-                out.println(ANSI_YELLOW +"\n\n"+name + ANSI_RESET +" is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET );
+                out.println(ANSI_YELLOW +"\n\n "+name + ANSI_RESET +" is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET );
             }
         }
         chooseCharacter();
@@ -88,7 +88,7 @@ public class GameLogic {
     public void chooseCharacter() throws InterruptedException {
         String[] options = {ANSI_RED+Players.FireMagePath.toString()+ANSI_RESET,ANSI_CYAN+Players.CowardNinjaPath.toString()+ANSI_RESET,ANSI_GREEN+Players.TankWarriorPath.toString()+ANSI_RESET};
         MenuInputScanner scanner = new MenuInputScanner(options);
-        scanner.setMessage("Welcome to the world of "+ANSI_RED+"Code & Dragons"+ANSI_WHITE+", please choose your " +ANSI_GREEN+"starter :"+ ANSI_RESET);
+        scanner.setMessage(" Welcome to the world of "+ANSI_RED+"Code & Dragons"+ANSI_RESET+", please choose your " +ANSI_GREEN+"starter :"+ ANSI_RESET);
         int answerIndex = prompt.getUserInput(scanner);
 
 
@@ -99,9 +99,10 @@ public class GameLogic {
             case 2 -> {
                 cowardNinjaPath = new CowardNinjaPath(out,prompt,userName);
                 cowardNinjaPath.cowardNinjaStart(); }
-            case 3 -> {
+            case 3-> {
                 tankWarriorPath = new TankWarriorPath(out,prompt,userName);
                 tankWarriorPath.tankWarriorStart(); }
+
         }
     }
 
@@ -110,10 +111,10 @@ public class GameLogic {
         options.add("yes");
         options.add("no");
         StringSetInputScanner yesOrNo = new StringSetInputScanner(options);
-        yesOrNo.setMessage(ANSI_WHITE+"Do you want to try a different story? [yes] or [no] ?"+ ANSI_RESET);
-        yesOrNo.setError(ANSI_YELLOW+ "This is not valid your bastard !!\n"+ ANSI_RESET);
-        prompt.getUserInput(yesOrNo);
-        if (prompt.getUserInput(yesOrNo).equals("yes")) {
+        yesOrNo.setMessage(ANSI_WHITE+" Do you want to try a different story? [yes] or [no] ?"+ ANSI_RESET);
+        yesOrNo.setError(ANSI_YELLOW+ " This is not valid your bastard !!\n"+ ANSI_RESET);
+        String choice = prompt.getUserInput(yesOrNo);
+        if (choice.equals("yes")) {
             start();
         } else {
             out.println(Answers1.ANSWER_1);  // agradecimentoo
