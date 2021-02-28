@@ -33,9 +33,9 @@ public class GameLogic {
     public CowardNinjaPath cowardNinjaPath;
     public TankWarriorPath tankWarriorPath;
 
-    private String maleWarriorName[] = {" o safado", " caçadordeppk", " lindin"};
-    private String femaleWarriorName[] = {" a safada", " caçadoradeppk", " lindinha"};
-    private String nullWarriorName[] = {" safadx", " caçadxdeppk", " lindx"};
+    private String maleWarriorName[] = {" o safado", " caçadorDePpk", " lindin", " viadoSafado", "destruidirDeBuceta", " o pudizinho"};
+    private String femaleWarriorName[] = {" a safada", " caçadoraDePpk", " lindinha", " kumedoraDeBoceta", " a belaDonzela", " famintaSecutora"};
+    private String nullWarriorName[] = {" safadx", " caçadxDePpk", " lindx", " jimmyNeutro", " the undicided", " duckNorris", " stikerManipulao"};
     public int mrandom = ((int) Math.floor(Math.random() * maleWarriorName.length));
     public int frandom = ((int) Math.floor(Math.random() * femaleWarriorName.length));
     public int nrandom = ((int) Math.floor(Math.random() * nullWarriorName.length));
@@ -52,8 +52,7 @@ public class GameLogic {
                 ">  A "+ ANSI_CYAN +"text-based RPG"+ ANSI_WHITE + " adventure simulator\n" +
                 ">  Three different "+ ANSI_CYAN +"characters with unique backstories"+ ANSI_WHITE +" and playability.\n" +
                 ">  Question and answer based game, where "+ ANSI_CYAN +"your decisions matter.\n" +  ANSI_WHITE +
-                ">  Every play-through is unique.\n" +
-                ">  Every ending "+ ANSI_CYAN +"saves in a pdf your unique story"+ ANSI_WHITE + " like a book…"+ANSI_RESET);
+                ">  Every play-through is unique.\n" );
         chooseUserName();
     }
 
@@ -66,19 +65,19 @@ public class GameLogic {
         String name = prompt.getUserInput(quest);
         String[] options = {ANSI_WHITE+ "Female"+ANSI_RESET , ANSI_WHITE+"Male"+ANSI_RESET , ANSI_WHITE+"Null, from Mars, Pastafari from Australia"+ANSI_RESET };
         MenuInputScanner scanner = new MenuInputScanner(options);
-        scanner.setMessage("\nDo you want to " +ANSI_GREEN+"specify your"+ ANSI_WHITE + " gender?");
+        scanner.setMessage("\n Do you want to " +ANSI_GREEN+"specify your"+ ANSI_WHITE + " gender?");
         int answerIndex = prompt.getUserInput(scanner);
 
         switch (answerIndex) {
             case 1 -> {
                 this.userName = (name.concat(femaleWarriorName[frandom]));
-                out.println(ANSI_YELLOW +"\n\n "+ name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
+                out.println(ANSI_YELLOW +"\n\n "+ name +ANSI_RESET + " is a beautiful name! I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
             case 2 -> {
                 this.userName = (name.concat(maleWarriorName[mrandom]));
-                out.println(ANSI_YELLOW +"\n\n "+name +ANSI_RESET + " is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
+                out.println(ANSI_YELLOW +"\n\n "+name +ANSI_RESET + " is a beautiful name! I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET ); }
             case 3 -> {
                 this.userName = (name.concat(nullWarriorName[nrandom]));
-                out.println(ANSI_YELLOW +"\n\n "+name + ANSI_RESET +" is a beautiful name!  I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET );
+                out.println(ANSI_YELLOW +"\n\n "+name + ANSI_RESET +" is a beautiful name! I`m going to call you " +ANSI_YELLOW + userName+ANSI_RESET );
             }
         }
         chooseCharacter();
@@ -119,7 +118,6 @@ public class GameLogic {
         } else {
             out.println(ANSI_RED + Answers1.ANSWER_1.toString().toUpperCase());
             out.println("\n" + Answers1.ANSWER_2);  // agradecimentoo
-            return;
         }
     }
 
