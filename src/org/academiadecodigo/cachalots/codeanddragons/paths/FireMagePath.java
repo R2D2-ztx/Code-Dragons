@@ -5,8 +5,6 @@ import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringSetInputScanner;
 import org.academiadecodigo.cachalots.codeanddragons.gamelogic.GameLogic;
-import org.academiadecodigo.cachalots.codeanddragons.phrases.Answers1;
-
 import java.io.PrintStream;
 import java.util.HashSet;
 import java.util.Set;
@@ -70,15 +68,15 @@ public class FireMagePath {
         Thread.sleep(2500);
         out.println(" The year is 325 000 D.F. Magic has emerged on this world and with it, mysterious creatures populated the land.");
         Thread.sleep(2500);
-        out.println(" Only one country still stands thanks to the power of the QUEEN, a Shieldmaiden that fought and repelled countless raid attempts and monster attacks.");
+        out.println(" Only one country still stands thanks to the power of the" + ANSI_PURPLE +" QUEEN" + ANSI_RESET +", a Shieldmaiden that fought and repelled countless raid attempts and monster attacks.");
         Thread.sleep(2500);
         out.println(" She created a safe haven for the citizens of Angra do Derrotismo, the capital of Dritte.");
         Thread.sleep(2000);
-        out.println(" Although everyone is very grateful to the QUEEN, no one knows her identity because she always wears her battle armor, with her helmet on");
+        out.println(" Although everyone is very grateful to the "+ANSI_PURPLE+"QUEEN"+ANSI_RESET+", no one knows her identity because she always wears her battle armor, with her helmet on");
         Thread.sleep(2500);
-        out.println(" Suddenly you hear the QUEEN calling and go to her castle with utmost urgency.\n\n");
+        out.println(" Suddenly you hear the "+ANSI_PURPLE+"QUEEN"+ANSI_RESET+"calling and go to her castle with utmost urgency.\n\n");
         Thread.sleep(3000);
-        out.println(ANSI_PURPLE+" QUEEN:" +ANSI_RESET+" \"Come, " +ANSI_RED+ userName + ANSI_RESET+", you are my chosen one. Without your help this country will be done.");
+        out.println(ANSI_PURPLE+" QUEEN" +ANSI_RESET+" \"Come, " +ANSI_RED+ userName + ANSI_RESET+", you are my chosen one. Without your help this country will be done.");
         Thread.sleep(2500);
         out.println(" During the last raid we suffered much loss, and to save us all, the country you shall cross.");
         Thread.sleep(2500);
@@ -88,12 +86,13 @@ public class FireMagePath {
     }
 
     public void acceptQuest() throws InterruptedException {
+
         Set<String> options = new HashSet<>();
         options.add("yes");
         options.add("no");
         StringSetInputScanner yesOrNo = new StringSetInputScanner(options);
-        yesOrNo.setMessage(" Do you accept your QUEEN's call? [yes] or [no] ? ");
-        yesOrNo.setError(ANSI_YELLOW+ " Do not talk like that to Our QUEEN!!\n"+ ANSI_RESET);
+        yesOrNo.setMessage(" Do you accept your "+ANSI_PURPLE+"QUEEN"+ANSI_RESET+"'s call? [yes] or [no] ? ");
+        yesOrNo.setError(" Do not talk like that to Our "+ANSI_PURPLE+"QUEEN"+ANSI_RESET+"!!\n");
         String resp = prompt.getUserInput(yesOrNo);
         if (resp.equals("yes")) {
             out.println("\n I knew you would choose that.\n");
@@ -105,16 +104,18 @@ public class FireMagePath {
     }
 
     private void fireMageQuest() throws InterruptedException {
-        String[] options = {"OK, Were WE GOOO!!!!!", "Sure... (Fucking QUEEN always asking me to do her job)", "Nod your head"};
-        MenuInputScanner scanner = new MenuInputScanner(options);
-        scanner.setMessage(ANSI_PURPLE+"\n\n QUEEN says: " + ANSI_RESET);
-        out.println(" \"My great "+ANSI_CYAN+"source of power"+ANSI_RESET+" has been stolen from me, and without it a bright future we shall not see.");
+
+        out.println(" \"My great "+ANSI_YELLOW+"Source of Power"+ANSI_RESET+" has been stolen from me, and without it a bright future we shall not see.");
         Thread.sleep(2000);
-        out.println(" Without my magic this city will not live, so in your strength our people must believe.");
+        out.println(" Without my might this city will not live, so in your strength our people must believe.");
         Thread.sleep(2000);
         out.println(" In my head a plan I have conceived, and complete success will be achieved.");
         Thread.sleep(2000);
-        out.println(" As "+ANSI_CYAN+"a present a mount "+ANSI_RESET+"I shall give, choose a steed and my artefact retrieve.\"\n");
+        out.println(" As "+ANSI_CYAN+"a present, a mount "+ANSI_RESET+"I shall give, choose a steed and my artefact retrieve.\"\n");
+
+        String[] options = {"OK, Were WE GOOO!!!!!", "Sure... (Fucking "+ANSI_PURPLE+"QUEEN"+ANSI_RESET+" always asking me to do her job)", "Nod your head"};
+        MenuInputScanner scanner = new MenuInputScanner(options);
+        scanner.setMessage("\n What do you answer?");
         int answerIndex = prompt.getUserInput(scanner);
         switch (answerIndex) {
             case 1, 2, 3 -> {horseChoice(); }
@@ -126,7 +127,7 @@ public class FireMagePath {
         MenuInputScanner horse = new MenuInputScanner(options);
         horse.setMessage("\n One of the QUEEN's servants guided you to her stables and presented you with three different steeds.One was a beautiful white \n" +
                 ANSI_CYAN + " Pegasus" + ANSI_RESET + " with silky white wings. The other was a " + ANSI_CYAN + "regular horse" + ANSI_RESET + ". And the third one was a " + ANSI_CYAN + "midget gnome" + ANSI_RESET + ".\n" + " Choose a steed Adventurer, call for it´s name: ");
-        horse.setError(ANSI_YELLOW + " You must pick a steed Adventurer!\n" + ANSI_RESET);
+        horse.setError(ANSI_WHITE + " You must pick a steed Adventurer!\n" + ANSI_RESET);
         int answerIndex = prompt.getUserInput(horse);
         switch (answerIndex) {
             case 1 -> pegasusHorsePath();
@@ -138,8 +139,8 @@ public class FireMagePath {
     private void pegasusHorsePath() throws InterruptedException {
         //Pegasus
 
-        out.println("\n\n You have chosen the "+ANSI_CYAN+"might Pegasus"+ANSI_RESET+", one of the rares magical creatures in this world.\n " +
-                "With it you can cross the lands admiring your world through a beautifully sky..."+ ANSI_RESET);
+        out.println("\n\n You have chosen the "+ANSI_CYAN+"mighty Pegasus"+ANSI_RESET+", one of the rarest magical creatures in this world.\n " +
+                "With it you can cross the lands admiring the view, soaring through a beautiful sky...");
 
         StringInputScanner enterToContinue = new StringInputScanner();
         enterToContinue.setMessage(ANSI_RED+ "\n Scream!!"+ANSI_RESET+ "Let your flying roar come out so the whole world can listen:\n");
@@ -150,16 +151,16 @@ public class FireMagePath {
 
     private void regularHorsePath() throws InterruptedException {
         Set<String> pathOptions = new HashSet<>();
-        pathOptions.add("forest");
-        pathOptions.add("valley");
+        pathOptions.add("Forest");
+        pathOptions.add("Valley of Death");
         StringSetInputScanner nextPath = new StringSetInputScanner(pathOptions);
-        nextPath.setMessage("\n\n You have chosen a "+ANSI_CYAN+"normal steed "+ANSI_RESET+"whit it you can gallop night and day...\n For 5 days you have traveled and now you have to choose, will our adventurer cross the"+ANSI_GREEN+" forest"+ANSI_RESET+" or will he climb the"+ANSI_GREEN+" valley?\n\n"+ANSI_RESET);
-        nextPath.setError(ANSI_YELLOW+ "Don´t be a Coward! Choose a path that leads you to your Queen quest!\n"+ ANSI_RESET);
+        nextPath.setMessage("\n\n You have chosen a "+ANSI_CYAN+"normal steed "+ANSI_RESET+"with it you can gallop night and day...\n For 5 days you have traveled and now you have to choose, will our adventurer journey through the"+ANSI_GREEN+" Forest"+ANSI_RESET+" or will he try to cross the"+ANSI_GREEN+" Valley of Death?\n\n"+ANSI_RESET);
+        nextPath.setError(ANSI_WHITE+ "Don´t be a Coward! Choose a path that leads you to your "+ANSI_PURPLE+"QUEEN"+ANSI_WHITE+" quest!\n"+ ANSI_RESET);
         String patchChosen = prompt.getUserInput(nextPath);
-        if (patchChosen.equals("forest")) {
+        if (patchChosen.equals("Forest")) {
             forestStart();
             //forest
-        } else if (patchChosen.equals("valley")) {
+        } else if (patchChosen.equals("Valley of Death")) {
             valleyStart();
             //valley
         }
@@ -170,60 +171,59 @@ public class FireMagePath {
         out.println("\n\n You have chosen the "+ANSI_CYAN+"Gnome, "+ANSI_RESET+"an old midget gnome. \n" +
                 "Little did you know that he was a teenage loving perv. He suddenly grabs you and whispers in your young ears...");
         Thread.sleep(2000);
-        out.println(ANSI_PURPLE+" Gnome: "+ANSI_RESET+"\"Come my little.... my sweet, sweet child... I will take you to my playroom... we are going to have "+ANSI_GREEN+"soooo much fun playing my"+ANSI_RESET+" games... hihi\"");
+        out.println(ANSI_PURPLE+" GNOME -> "+ANSI_RESET+"\"Come my little.... my sweet, sweet child... I will take you to my playroom... we are going to have soooo much fun playing my"+ANSI_GREEN+" games"+ANSI_RESET+"... hihi\"");
         Thread.sleep(2000);
-        out.println(" You cannot get rid of the gnome, you try to "+ANSI_RED+"/fireBall;"+ANSI_RESET+" but nothing happens, the perv is not only taking your virginity, but also draining your magic" );
+        out.println("                        You cannot get rid of the gnome, you try to "+ANSI_RED+"/fireBall;"+ANSI_RESET+" but nothing happens, the perv is not only taking your virginity, but also draining your magic and life force");
         Thread.sleep(2000);
-        out.println(" You are hopeless and have nowhere to go ...");
+        out.println("                        You are hopeless and have nowhere to go ...");
         Thread.sleep(2000);
-        out.println(" You have accepted your fate, raped by a gnome on his midget playroom ");
+        out.println("                        You have accepted your fate, raped by an old midget gnome on his little playroom");
         Thread.sleep(2000);
         out.println(ANSI_RED+" ...you died... \n"+ANSI_RESET);
         Thread.sleep(2000);
-        out.println(ANSI_RED + Answers1.ANSWER_1.toString().toUpperCase());
         gameLogic.reStart();
-        //death method/ path to restart ou intaresetart / as it is now//
+
     }
 
     private void forestStart() throws InterruptedException {
-        out.println("\n You were riding down the forest when suddenly you heard strange sound coming from behind a big oak tree. It was a "+ANSI_PURPLE+"forest midget gnome!"+ANSI_RESET);
+        out.println("\n You were riding down the forest when suddenly you heard a strange sound coming from behind a big oak tree. It was a "+ANSI_PURPLE+"forest midget gnome!"+ANSI_RESET);
         Thread.sleep(2000);
-        out.println(ANSI_PURPLE+" Fenny:" +ANSI_RESET+"\"UH, EXCUSE ME?? Why are u trespassing in my woods? Do you not know de wae?\"");
+        out.println(ANSI_PURPLE+" FENNY -> " +ANSI_RESET+"\"UH, EXCUSE ME?? Why are u trespassing in my woods? Do you not know de wae?\"");
         Thread.sleep(2000);
-        out.println(" \"Do you not know these are the lands of Fenny the Breakable? If you take one more step I will make sure u will\"");
+        out.println("           Do you not know these are the lands of FENNY the Breakable? If you take one more step I will make sure u will");
         Thread.sleep(2000);
-        out.println(" \"Never take another one!\"");
+        out.println("           Never take another one!\"");
         Thread.sleep(2000);
         fennyFightFireMage();
     }
 
     private void fennyFightFireMage() throws InterruptedException {
         //forest
-        Set<String> lennyOptions = new HashSet<>();
-        lennyOptions.add("/tellAjoke;");
-        lennyOptions.add("/babyTalk;");
-        lennyOptions.add("/fireBall;");
-        lennyOptions.add("/persuade;");
-        StringSetInputScanner lenny = new StringSetInputScanner(lennyOptions);
-        lenny.setMessage("\n You are now facing a "+ANSI_PURPLE+"midget gnome!"+ANSI_RESET+" Quick do your move: ");
-        lenny.setError(ANSI_YELLOW+ " Did you really forgot your OWN character commands? Pity... \n"+ ANSI_RESET);
-        String lennyChosen = prompt.getUserInput(lenny);
-        if (lennyChosen.equals("/tellAjoke;")) {
-            out.println(" \n\n You called the "+ANSI_RED+"ancestral language"+ANSI_RESET+", known by few! Your eyes glow and you shout ou laud, rephrasing the voices on your head:");
+        Set<String> fennyOptions = new HashSet<>();
+        fennyOptions.add("/tellAjoke;");
+        fennyOptions.add("/babyTalk;");
+        fennyOptions.add("/fireBall;");
+        fennyOptions.add("/persuade;");
+        StringSetInputScanner fenny = new StringSetInputScanner(fennyOptions);
+        fenny.setMessage("\n You are now facing "+ANSI_PURPLE+"FENNY!"+ANSI_RESET+" Quick do your move: ");
+        fenny.setError(ANSI_WHITE+ " Did you really forgot your OWN character commands? Pity... \n"+ ANSI_RESET);
+        String fennyChosen = prompt.getUserInput(fenny);
+        if (fennyChosen.equals("/tellAjoke;")) {
+            out.println(" \n\n You called upon the "+ANSI_RED+"ancient language"+ANSI_RESET+", known by few! Your eyes glow and you shout out loud:");
             Thread.sleep(2000);
-            out.println(ANSI_RED+ " " + userName +ANSI_RESET+": Encontrei um sapo dentro do meu computador. Agora tenho mais memória-rã!");
+            out.println(ANSI_RED+ userName +ANSI_RESET+" -> Encontrei um sapo dentro do meu computador. Agora tenho mais memória-rã!");
             Thread.sleep(2000);
-            out.println(ANSI_PURPLE+" Lenny"+ANSI_RESET+" understood the ancient language using his Gnome senses and starts laughing so hard that he forgot you even exist...");
+            out.println(ANSI_PURPLE+" FENNY"+ANSI_RESET+" understood the ancient language using his Gnome senses and started laughing so hard that he forgot you even existed...");
             Thread.sleep(2000);
-            out.println(" You crossed the "+ANSI_GREEN+"forest"+ANSI_RESET+" safely!");
+            out.println(" You crossed the "+ANSI_GREEN+"Forest"+ANSI_RESET+" safely!");
             cityGeral();
 
-        } else if (lennyChosen.equals("/babyTalk;")) {
-            out.println("\n You start making a scene, crying like a wu baby with the expectation that the gnome would let tou go...");
+        } else if (fennyChosen.equals("/babyTalk;")) {
+            out.println("\n You start making a scene, crying like a baby hoping that the gnome would let you go...");
             Thread.sleep(2000);
-            out.println("\n But he starts to get horny, you are giving the gnome every possible reason for him to rape you. He grabs your leg and starts to rub his material on your foot.");
+            out.println("\n But he starts to get horny. You are giving the gnome every possible reason for him to rape you. He grabs your leg and starts to rub his junk on your foot.");
             Thread.sleep(2000);
-            out.println(" You cannot get rid of the gnome, you try to "+ANSI_RED+"/fireBall;"+ANSI_RESET+" but nothing happens, the perv is not only taking your virginity, but also draining your magic" );
+            out.println(" You cannot get rid of the gnome, you try to "+ANSI_RED+"/fireBall;"+ANSI_RESET+" but nothing happens, the perv is not only taking your virginity, but also draining your magic and your life force.");
             Thread.sleep(2000);
             out.println(" You are hopeless and have nowhere to go ...");
             Thread.sleep(2000);
@@ -234,32 +234,32 @@ public class FireMagePath {
             gameLogic.reStart();
 
 
-        } else if (lennyChosen.equals("/fireBall;")){
+        } else if (fennyChosen.equals("/fireBall;")){
             //kills gnome
-            out.print("\n\n You called all your strength, the air starts to heat up, it becomes hard to breath...");
+            out.println("\n\n You called all your strength, the air starts to heat up, it becomes hard to breath...");
             Thread.sleep(2000);
-            out.print("\n "+ANSI_PURPLE+"Lenny"+ANSI_RESET+" is felling the heat and starts to regret his threat. You raise your staff and a light forms on top of it...");
+            out.println("\n "+ANSI_PURPLE+"FENNY"+ANSI_RESET+" is feeling the heat and starts to regret his threat. You raise your staff and a fire ball forms on top of it...");
             Thread.sleep(2000);
-            out.print("\n You cast a "+ANSI_RED+"/fireBall;"+ANSI_RESET+" and it lunches directly to "+ANSI_PURPLE+"Lenny"+ANSI_RESET+". He cannot run, and dies purged by fire!");
+            out.println("\n You cast a "+ANSI_RED+"/fireBall;"+ANSI_RESET+" and it launches directly at "+ANSI_PURPLE+"FENNY"+ANSI_RESET+". He cannot run, and dies purged by fire!");
             Thread.sleep(2000);
-            out.print("\n While going away you spit on the dead gnome ashes, like the little prick you are!\n");
+            out.println("\n While going away you spit on the dead gnomes ashes, like the little prick you are!\n");
             cityGeral();
-        } else if (lennyChosen.equals("/persuade;")){
+        } else if (fennyChosen.equals("/persuade;")){
             out.println("\n" + userName + "!!!! tried to "+ANSI_RED+"/persuade;"+ANSI_RESET+", but it is not very effective.");
             fennyFightFireMage();
         }
     }
 
     private void valleyStart() throws InterruptedException {
-        out.println(" \nWhile wandering around the Valley of Death you felt something watching you... From the shadows... " );
+        out.println("\n While wandering around the Valley of Death you felt something watching you... From the shadows... " );
         Thread.sleep(2000);
-        out.print("\n After feeling a tingle in your spine you decided to search for the strange figure. Suddenly a human-like creature emerged from the shadow.");
+        out.println("\n After feeling a tingle in your spine you decided to search for the strange figure. Suddenly a human-like creature emerged from the shadow.");
         Thread.sleep(2000);
-        out.print(" \n"+ANSI_PURPLE+"Shadow Priest"+ANSI_RESET+": \"Do you know what happens to those who wander in the Valley of Death? \"");
+        out.println("\n "+ANSI_PURPLE+"SHADOW PRIEST"+ANSI_RESET+"-> \"Do you know what happens to those who wander in the Valley of Death?");
         Thread.sleep(2000);
-        out.print(" \n Have you not been wondering why nothing can live in this deserted valley? In order to be immortal i have to sap the life force of everything around me.\"" );
+        out.println("\n Have you not been wondering why nothing can live in this deserted valley? In order to be immortal I have to sap the life force of everything around me." );
         Thread.sleep(2000);
-        out.print(" \n And YOU are next!\"");
+        out.println("\n And YOU are next!\"");
         Thread.sleep(2000);
         priestFightFireMage();
     }
@@ -272,25 +272,25 @@ public class FireMagePath {
         setPriest.add("/persuade;");
         StringSetInputScanner scannerPriest = new StringSetInputScanner(setPriest);
 
-        scannerPriest.setMessage(ANSI_WHITE+"\n You are now facing a "+ANSI_PURPLE+"Shadow Priest!"+ANSI_RESET+" Quick do your move: "+ANSI_RESET);
-        scannerPriest.setError(ANSI_YELLOW+ " Did you really forgot your OWN character commands? Pity... \n"+ ANSI_RESET);
+        scannerPriest.setMessage("\n You are now facing the "+ANSI_PURPLE+"SHADOW PRIEST!"+ANSI_RESET+" Quick do your move: ");
+        scannerPriest.setError(ANSI_WHITE+ " Did you really forgot your OWN character commands? Pity... \n"+ ANSI_RESET);
         String priestChoice = prompt.getUserInput(scannerPriest);
 
 
         if (priestChoice.equals("/vim;")) {
 
-            out.print(" \nYou say u think Vim is cool ..." );
+            out.println("\n You say u think Vim is cool ..." );
             Thread.sleep(2000);
-            out.print(" \nThe" +ANSI_PURPLE+"Shadow Prist"+ANSI_RESET+" gets exited, he loves Vim and tells you his real name... Alexio.");
+            out.println("\n The "+ANSI_PURPLE+"SHADOW PRIEST"+ANSI_RESET+" gets exited, he loves Vim and tells you his real name... ALEXIOS.");
             Thread.sleep(2000);
-            out.print(" \nBoth of you light up a joint, smoke it together and code for hours uncounted... After those wonderful moments you go your way, out of the valley!");
+            out.println("\n Both of you light up a joint, smoke it together and talk about coding for hours and hours... After those wonderful moments you go your way, out of the Valley!");
             cityGeral();
 
         } else if (priestChoice.equals("/babyTalk;")) {
 
-            out.println("\n You start making a scene, crying like a wu baby with the expectation that the Priest would let tou go...");
+            out.println("\n You start making a scene, crying like a baby hoping that the PRIEST would let you go...");
             Thread.sleep(2000);
-            out.print("\n He completely ignores your cries and will not let you cross his path!");
+            out.println("\n He completely ignores your cries and will not let you cross his path!");
             priestFightFireMage();
 
         } else if (priestChoice.equals("/fireBall;")){
@@ -299,22 +299,22 @@ public class FireMagePath {
 
             out.print("\n\n You called all your strength, the air starts to heat up, becoming hard to breathe.");
             Thread.sleep(2000);
-            out.print("\n "+ANSI_PURPLE+"Shadow Priest"+ANSI_RESET+" is felling the heat, he loves it. You raise your staff and a light forms on top of it...");
+            out.print("\n "+ANSI_PURPLE+"SHADOW PRIEST"+ANSI_RESET+" is feeling the heat, he loves it. You raise your staff and a fire ball forms on top of it...");
             Thread.sleep(2000);
-            out.print("\n You cast a "+ANSI_RED+"/fireBall;"+ANSI_RESET+" and it lunches directly to the "+ANSI_PURPLE+"Shadow Priest"+ANSI_RESET+". But nothing happens!");
+            out.print("\n You cast a "+ANSI_RED+"/fireBall;"+ANSI_RESET+" and it launches directly at the "+ANSI_PURPLE+"SHADOW PRIEST"+ANSI_RESET+". But nothing happens!");
             Thread.sleep(2000);
-            out.print("\n He laughs at you, he was born by fire, using it will only increase his power. The Priest locks at you and in seconds your fear consumes you.");
+            out.print("\n He laughs at you, he was born by fire, using it will only increase his power. The PRIEST looks at you and in seconds, fear consumes you.");
             Thread.sleep(2000);
-            out.print("\n The"+ANSI_PURPLE+"Shadow Priest"+ANSI_RESET+" raises his hand, casting his own"+ANSI_RED+"/fireBall;"+ANSI_RESET+"you instantly die!");
+            out.print("\n The"+ANSI_PURPLE+"SHADOW PRIEST"+ANSI_RESET+" raises his hand, casting his own "+ANSI_RED+"/fireBall;"+ANSI_RESET+" and you instantly die!");
             gameLogic.reStart();
 
         } else if (priestChoice.equals("/persuade;")){
 
-            out.print(" \nYou try to reach you unique persuasion abilities. You talk directly to the "+ANSI_PURPLE+"Shadow Priest "+ANSI_RESET);
+            out.print("\n You try to use your unique persuasion abilities. You talk directly to the "+ANSI_PURPLE+"SHADOW PRIEST"+ANSI_RESET);
             Thread.sleep(2000);
-            out.print(" \nAfter a long conversation about your quest, the Priest said: \" You are cool\" and lets you go.");
+            out.print("\n After a long conversation about your quest, the "+ANSI_PURPLE+"PRIEST"+ANSI_RESET+" said: \" You are cool\" and lets you go.");
             Thread.sleep(2000);
-            out.print(" \nYou persuasion abilities worked with "+ANSI_CYAN+"Great Success!"+ANSI_RESET);
+            out.print("\n Your persuasion abilities worked with "+ANSI_CYAN+"Great Success!"+ANSI_RESET);
             cityGeral();
 
         }
@@ -339,7 +339,7 @@ public class FireMagePath {
         String[] cityOptions = {" Graça's Bakery", " Gah's Church", " Docks", " Exit the town and check the cave out"};
         MenuInputScanner cityMenu = new MenuInputScanner(cityOptions);
         cityMenu.setMessage("\nWhere do you wish to go?");
-        cityMenu.setError("Invalid input, please try again");
+        cityMenu.setError(ANSI_WHITE+"Invalid input, please try again"+ANSI_RESET);
         int cityChoice = prompt.getUserInput(cityMenu);
 
         switch (cityChoice) {
@@ -362,7 +362,7 @@ public class FireMagePath {
         options.add("no");
         StringSetInputScanner gracaMenu = new StringSetInputScanner(options);
         gracaMenu.setMessage("\n Do you accept his offer? [yes] or [no]");
-        gracaMenu.setError(" Invalid input, please try again");
+        gracaMenu.setError(ANSI_WHITE+" Invalid input, please try again"+ANSI_RESET);
         String gracaChoice = prompt.getUserInput(gracaMenu);
         if(gracaChoice.equals("yes")){
             out.println(" Drunkard ->" + " \"hEy bUDdY, tHaNks fOR DriNkInG wITh *hicc* *hicc* mE!!");
@@ -371,7 +371,7 @@ public class FireMagePath {
             Thread.sleep(2000);
             StringInputScanner drunkRiddle = new StringInputScanner();
             drunkRiddle.setMessage("\n What word is pronounced the same if you take away four of its five letters?\n");
-            drunkRiddle.setError(" Invalid input, please try again");
+            drunkRiddle.setError(ANSI_WHITE+" Invalid input, please try again"+ANSI_RESET);
             String drunkRiddleChoice = prompt.getUserInput(drunkRiddle);
             if(drunkRiddleChoice.equals("queue")){
                 out.println(" Correct!! Now, for the info... The monster everybody is talking about is a Dragon!!");
@@ -393,22 +393,22 @@ public class FireMagePath {
     private void cityMenuGah() throws InterruptedException {
         out.println(" The church door is ajar. You decide to take a look inside. Suddenly a priest creeps on you");
         Thread.sleep(2000);
-        out.println(" Father Gabriel -> " + " Hello, my name is Father Gabriel. Do you have a moment to talk about");
+        out.println(" FATHER GABRIEL ->" + " \"Hello, my name is FATHER GABRIEL. Do you have a moment to talk about");
         Thread.sleep(2000);
-        out.println(" Our Lord and Savior Gah? \"" + " he said while offering you a joint");
+        out.println("                    Our Lord and Savior GAH? \"" + " he said while offering you a joint");
         Thread.sleep(2000);
         String[] gahOptions = {" You take a puff and spend 3 1/2 hours talking to him", "You are a good Christian adventurer and say not to drugs and go back to the city"};
         MenuInputScanner gahMenu = new MenuInputScanner(gahOptions);
         gahMenu.setMessage(" What do you do?");
-        gahMenu.setError(" Invalid input, please try again");
+        gahMenu.setError(ANSI_WHITE+" Invalid input, please try again"+ANSI_RESET);
         int gahChoice = prompt.getUserInput(gahMenu);
 
         if(gahChoice == 1){
             out.println(" After taking a few puffs, you see the god Gah in the smoke");
             Thread.sleep(2000);
-            out.println(" Gah ->" + "Come forth my child! I shall give you my blessing so you can fight as a warrior of Gah.");
+            out.println(" GAH ->" + "Come forth my child! I shall give you my blessing so you can fight as a warrior of Gah.");
             Thread.sleep(2000);
-            out.println(" * You received Gah's blessing (Makes you immune to fire of any kind for 48h hours) *");
+            out.println(ANSI_RED+" * You received GAH's blessing (Makes you immune to fire of any kind for 48h hours) *"+ANSI_RESET);
             Thread.sleep(2000);
             setGahBlessing();
             cityMenu();
@@ -425,24 +425,24 @@ public class FireMagePath {
         Thread.sleep(2000);
         out.println(" Suddenly a ship goes past you. The captain jumped onto the pier and offered you a coconut.");
         Thread.sleep(2000);
-        out.println(" Captain Raul -> " + "\" Hey stranger! You look really tired.");
+        out.println(" CAPTAIN RAÚL -> " + "\" Hey stranger! You look really tired.");
         Thread.sleep(2000);
-        out.println(" Are you done with slaying monsters and doing stupid quests?");
+        out.println("                  Are you done with slaying monsters and doing stupid quests?");
         Thread.sleep(2000);
-        out.println(" Well, if you're interested i can arrange for a trip to paradise island,");
+        out.println("                  Well, if you're interested i can arrange for a trip to paradise island,");
         Thread.sleep(2000);
-        out.println(" far from here and far from all those pesky monsters.\"");
+        out.println("                  far from here and far from all those pesky monsters.\"");
         Thread.sleep(2000);
         Set<String> dockOptions = new HashSet<>();
         dockOptions.add("yes");
         dockOptions.add("no");
         StringSetInputScanner dockMenu = new StringSetInputScanner(dockOptions);
         dockMenu.setMessage(" What will you answer? [yes] or [no]");
-        dockMenu.setError(" Invalid input, please try again");
+        dockMenu.setError(ANSI_WHITE+" Invalid input, please try again"+ANSI_RESET);
         String dockChoice = prompt.getUserInput(dockMenu);
 
         if(dockChoice.equals("yes")){
-            out.println(" You entered the boat with the Captain Raul and sailed to a distant land of");
+            out.println(" You entered the boat with CAPTAIN RAÚL and sailed to the distant land of");
             Thread.sleep(2000);
             out.println(" Trinidad & Tobago, where you spend the rest of your life living in peace, in a");
             Thread.sleep(2000);
@@ -468,9 +468,9 @@ public class FireMagePath {
     }
 
     private void trollPath() throws InterruptedException {
-        out.println(" Thigo the Troll -> \" I am Thigo, the most intelligent troll in the whole world!!!");
+        out.println(" THIGO the Troll -> \"I am THIGO, the most intelligent troll in the whole world!!!");
         Thread.sleep(2000);
-        out.println("                       I am the keeper of this bridge and you can only pass if you answer my riddle correctly!");
+        out.println("                    I am the keeper of this bridge and you can only pass if you answer my riddle correctly!");
         Thread.sleep(2000);
         trollQuestion();
     }
@@ -483,9 +483,9 @@ public class FireMagePath {
         if(trollRiddleChoice.equals("silence")){
             out.println("\" Correct!! I shall grant you safe passage through this river.");
             Thread.sleep(2000);
-            out.println("\n\n\n\n OH... And also, take this lump of shiny rock i found the other day on the river\"");
+            out.println(" OH... And also, take this lump of shiny rock i found the other day on the river\"");
             Thread.sleep(2000);
-            out.println(" *Thigo hands you a big lump of gold ore*");
+            out.println(" *THIGO hands you a big lump of gold ore*");
             Thread.sleep(2000);
             setGuessedTrollRiddle();
             caveOutside();
@@ -496,27 +496,27 @@ public class FireMagePath {
     }
 
     private void caveOutside() throws InterruptedException {
-        out.println("A few hills after the bridge you finally find the cave!! Though it looks dangerous.");
+        out.println(" A few hills after the bridge you finally find the cave!! Though it looks dangerous.");
         Thread.sleep(2000);
-        out.println("Even so, you decide to go in and take care of this once and for all.");
+        out.println(" Even so, you decide to go in and take care of this once and for all.");
         Thread.sleep(2000);
         programmerCave();
     }
 
     private void programmerCave() throws InterruptedException {
-        out.println("The cave had many, many tunnels, so many you got lost... ");
+        out.println(" The cave had many, many tunnels, so many you got lost... ");
         Thread.sleep(1500);
-        out.println("After wandering around the tunnels for a while you arrive in a room");
+        out.println(" After wandering around the tunnels for a while you arrive in a room");
         Thread.sleep(1500);
-        out.println("This room was pitch black and reeked of mold and .... *sniff sniff* cheetos??");
+        out.println(" This room was pitch black and reeked of mold and .... *sniff sniff* cheetos??");
         Thread.sleep(1500);
-        out.println("In the deepest corner of the room, you saw a tiny light and someone in front of it");
+        out.println(" In the deepest corner of the room, you saw a tiny light and someone in front of it");
         Thread.sleep(1500);
-        out.println("It was a programmer with a Google shirt on. He was looking half-dead, full of cheeto dust in his fingers");
+        out.println(" It was a programmer with a Google shirt on. He was looking half-dead, full of cheeto dust in his fingers");
         Thread.sleep(2000);
-        out.println("[I could let you decide what to do here, but i dont think we want to mess with him, so YOU leave the room]");
+        out.println(" [I could let you decide what to do here, but i dont think we want to mess with him, so YOU leave the room]");
         Thread.sleep(2000);
-        out.println("And so you kept searching for the dragons lair...");
+        out.println(" And so you kept searching for the dragons lair...");
         dragonNest();
     }
 
@@ -532,11 +532,11 @@ public class FireMagePath {
         Thread.sleep(2000);
         out.println(" ...");
         Thread.sleep(2000);
-        out.println(" Oh no!! The dragon felt your presence and woke up, and he does not look happy...");
+        out.println(" Oh no!! The dragon felt your presence and woke up, and it does not look happy...");
         Thread.sleep(2000);
-        out.println("MARION the Dragon ->  \"Rawrrrr xD !!! Who are you who tried to steal from me, MARION the last of the Dragonkind?!");
+        out.println("MARION the Dragon -> \"Rawrrrr xD !!! Who are you, who tried to steal from me, MARION the last of the Dragonkind?!");
         Thread.sleep(2000);
-        out.println("                        You will pay for this with your life!! I shall burn you to a crisp!\"");
+        out.println("                     You will pay for this with your life!! I shall burn you to a crisp!\"");
         fireMageDragonFight();
 
     }
@@ -558,7 +558,7 @@ public class FireMagePath {
 
             if(dragonChoice.equals("/babyTalk;")){
                 if(gahBlessing == true){
-                    out.println("\n You start making a scene, crying like a wu baby with the expectation that MARION would let tou go...");
+                    out.println("\n You start making a scene, crying like a baby hoping that MARION would let you go...");
                     Thread.sleep(2000);
                     out.println(" She doesnt really care about your cries and engulfs you in a massive ball of fire!");
                     Thread.sleep(2000);
@@ -566,7 +566,7 @@ public class FireMagePath {
                     fireMageDragonFight();
                 }
 
-                out.println("\n You start making a scene, crying like a wu baby with the expectation that MARION would let tou go...");
+                out.println("\n You start making a scene, crying like a baby hoping that MARION would let you go...");
                 Thread.sleep(2000);
                 out.println(" She doesnt seem to care about your cries and just bbq's you...");
                 gameLogic.reStart();
@@ -574,9 +574,9 @@ public class FireMagePath {
             if(dragonChoice.equals("/fireBall;")){
                 out.println("\n\n You called all your strength, the air starts to heat up, becoming hard to breathe.");
                 Thread.sleep(2000);
-                out.println(" You summon the biggest fire ball the world has ever seen and throw it to MARION with all your might");
+                out.println(" You summon the biggest fire ball the world has ever seen and throw it at MARION with all your might");
                 Thread.sleep(2000);
-                out.println(" Uh, that might've not been a very good idea... She took no damage. I mean you do realise she is a Dragon right?!");
+                out.println(" Uh, that might've not been a very good idea... She took no damage. I mean, you do realise she is a Dragon right?!");
                 Thread.sleep(2000);
                 out.println(" Maybe try something else...");
                 Thread.sleep(2000);
@@ -586,25 +586,25 @@ public class FireMagePath {
 
                 out.println(" You used your adventurer charm and tried to seduce MARION. It was very effective!!!");
                 Thread.sleep(2000);
-                out.println("MARION the Dragon ->  \"You can't believe how lonely it gets when you are the last one of your kind. Finally someone came to rid me of this loneliness.");
+                out.println("MARION the Dragon -> \"You can't believe how lonely it gets when you are the last one of your kind. Finally someone came to rid me of this loneliness.");
                 Thread.sleep(2000);
-                out.println("                        Take whatever you wish from me. You already took my heart and that's all that matters.\"");
+                out.println("                     Take whatever you wish from me. You already took my heart and that's all that matters.\"");
                 Thread.sleep(2000);
-                out.println(" You took the Source of Power, and while you have to return to Angra, you make an unbreakable vow with MARION");
+                out.println(" You took the Source of Power, and while you did have to return to Angra, you made an unbreakable vow with MARION");
                 Thread.sleep(2000);
-                out.println(" that you will return for her and you shall both live happily, for the rest of your lives, together");
+                out.println(" that you would return for her and you shall both live happily, for the rest of your lives, together");
                 Thread.sleep(2000);
                 returnToAngra();
             }
             if(dragonChoice.equals("/throwGold;")){
 
-                out.println("You threw the big ore of gold that THIGO gave you to the back of the cave.");
+                out.println(" You threw the big ore of gold that THIGO gave you to the back of the cave.");
                 Thread.sleep(2000);
-                out.println("MARION as the Dragon she is, went straight to the ore and is know rubbing it and admiring it.");
+                out.println(" MARION as the Dragon she is, went straight to the ore and is know rubbing it and admiring it.");
                 Thread.sleep(2000);
-                out.println("I feel like there's something Sméagol-like about this...(Yes this is a LOTR reference, deal with it)");
+                out.println(" I feel like there's something Sméagol-like about this...(Yes this is a LOTR reference, deal with it)");
                 Thread.sleep(2000);
-                out.println("You take advantage of the distracted dragon and steal back the Source of Power that will save all of Dritte and run away from the cave");
+                out.println(" You take advantage of the distracted dragon and steal back the Source of Power that will save all of Dritte and run away from the cave");
                 Thread.sleep(2000);
                 returnToAngra();
 
@@ -619,12 +619,12 @@ public class FireMagePath {
             StringSetInputScanner scannerDragon = new StringSetInputScanner(setDragonNormal);
 
             scannerDragon.setMessage("The dragon seems to want to fight. What will you do? \n");
-            scannerDragon.setError(ANSI_YELLOW+ " Did you really forgot your OWN character commands? Pity... \n"+ ANSI_RESET);
+            scannerDragon.setError(ANSI_WHITE+ " Did you really forgot your OWN character commands? Pity... \n"+ ANSI_RESET);
             String dragonChoice = prompt.getUserInput(scannerDragon);
 
             if(dragonChoice.equals("/babyTalk;")){
                 if(gahBlessing == true){
-                    out.println("\n You start making a scene, crying like a wu baby with the expectation that MARION would let tou go...");
+                    out.println("\n You start making a scene, crying like a baby hoping that MARION would let you go...");
                     Thread.sleep(2000);
                     out.println(" She doesnt really care about your cries and engulfs you in a massive ball of fire!");
                     Thread.sleep(2000);
@@ -632,7 +632,7 @@ public class FireMagePath {
                     fireMageDragonFight();
                 }
 
-                out.println("\n You start making a scene, crying like a wu baby with the expectation that MARION would let tou go...");
+                out.println("\n You start making a scene, crying like a baby hoping that MARION would let you go...");
                 Thread.sleep(2000);
                 out.println(" She doesnt seem to care about your cries and just bbq's you...");
                 gameLogic.reStart();
@@ -640,7 +640,7 @@ public class FireMagePath {
             if(dragonChoice.equals("/fireBall;")){
                 out.println("\n\n You called all your strength, the air starts to heat up, becoming hard to breathe.");
                 Thread.sleep(2000);
-                out.println(" You summon the biggest fire ball the world has ever seen and throw it to MARION with all your might");
+                out.println(" You summon the biggest fire ball the world has ever seen and throw it at MARION with all your might");
                 Thread.sleep(2000);
                 out.println(" Uh, that might've not been a very good idea... She took no damage. I mean you do realise she is a Dragon right?!");
                 Thread.sleep(2000);
@@ -652,13 +652,13 @@ public class FireMagePath {
 
                 out.println(" You used your adventurer charm and tried to seduce MARION. It was very effective!!!");
                 Thread.sleep(2000);
-                out.println("MARION the Dragon ->  \"You can't believe how lonely it gets when you are the last one of your kind. Finally someone came to rid me of this loneliness.");
+                out.println(" MARION the Dragon ->  \"You can't believe how lonely it gets when you are the last one of your kind. Finally someone came to rid me of this loneliness.");
                 Thread.sleep(2000);
-                out.println("                        Take whatever you wish from me. You already took my heart and that's all that matters.\"");
+                out.println("                      Take whatever you wish from me. You already took my heart and that's all that matters.\"");
                 Thread.sleep(2000);
-                out.println(" You took the Source of Power, and while you have to return to Angra, you make an unbreakable vow with MARION");
+                out.println(" You took the Source of Power, and while you did have to return to Angra, you made an unbreakable vow with MARION");
                 Thread.sleep(2000);
-                out.println(" that you will return for her and you shall both live happily, for the rest of your lives, together");
+                out.println(" that you would return for her and you shall both live happily, for the rest of your lives, together");
                 Thread.sleep(2000);
                 returnToAngra();
             }
@@ -667,47 +667,47 @@ public class FireMagePath {
     }
 
     private void returnToAngra() throws InterruptedException {
-        out.println("You got out of the cave alive somehow!! Your journey is almost at the end, so you take a really big breath and set you eyes onto the castle in Angra");
+        out.println(" You got out of the cave alive somehow!! Your journey is almost at the end, so you take a really big breath and set you eyes onto the castle in Angra");
         Thread.sleep(2000);
-        out.println("During your trip back you go through Praia do Empate and already the bards are singing songs about your courage and bravery and the success of your mission");
+        out.println(" During your trip back you go through Praia do Empate and already the bards are singing songs about your courage and bravery and the success of your mission");
         Thread.sleep(2000);
-        out.println("Hearing all of that feels good, but you remember your quests objective and decide to make haste");
-        Thread.sleep(2000);
-        out.println("...");
+        out.println(" Hearing all of that feels good, but you remember your quests objective and decide to make haste");
         Thread.sleep(2000);
         out.println("...");
         Thread.sleep(2000);
-        out.println("Finally you arrive at the castle and go straight to the throne room where the QUEEN is awaiting your arrival");
+        out.println("...");
+        Thread.sleep(2000);
+        out.println(" Finally you arrive at the castle and go straight to the throne room where the QUEEN is awaiting your arrival");
         throneRoom();
     }
 
     private void throneRoom() throws InterruptedException {
-        out.println("QUEEN -> \"Welcome, " + userName + ", I was eagerly awaiting your arrival. From all the commotion on the castle I imagine you have been successful");
+        out.println(" "+ANSI_PURPLE+"QUEEN"+ANSI_RESET+" -> \n\"Welcome, "+ ANSI_RED + userName +ANSI_RESET+ ", I was eagerly awaiting your arrival. From all the commotion on the castle I imagine you have been successful");
         Thread.sleep(2000);
-        out.println("           Behind that door you will find your treasure as reward. And for being so swift on your quest I would like to reward you with one wish");
+        out.println("          Behind that door you will find your treasure as reward. And for being so swift on your quest I would like to reward you with one wish");
         Thread.sleep(2000);
-        out.println("           If it is within my power I shall grant you any wish you like.\"");
+        out.println("          If it is within my power I shall grant you any wish you like.\"");
         Thread.sleep(2000);
         throneRoomDecision();
     }
 
     private void throneRoomDecision() throws InterruptedException {
 
-        String[] options = {"[Unlocked with purchase of Code & Dragons - The Mistery Island DLC]", "I wish to know your identity my QUEEN", "[Unlocked with purchase of Code & Dragons - Saint Michel DLC]"};
+        String[] options = {"[Unlocked with purchase of Code & Dragons - The Mistery Island DLC]", "I wish to know your identity my "+ANSI_PURPLE+"QUEEN"+ANSI_RESET, "[Unlocked with purchase of Code & Dragons - Saint Michel DLC]"};
         MenuInputScanner wish = new MenuInputScanner(options);
         wish.setMessage("What is your wish?");
-        wish.setError("Invalid input, please try again.");
+        wish.setError(ANSI_WHITE+"Invalid input, please try again."+ANSI_RESET);
         int wishChoice = prompt.getUserInput(wish);
         if(wishChoice == 1){
-            out.println("[Unlocked with purchase of Code & Dragons - The Mistery Island DLC]");
+            out.println(" [Unlocked with purchase of Code & Dragons - The Mistery Island DLC]");
             throneRoomDecision();
         }
-        if(wishChoice == 3){out.println("[Unlocked with purchase of Code & Dragons - Saint Michel DLC]");
+        if(wishChoice == 3){out.println(" [Unlocked with purchase of Code & Dragons - Saint Michel DLC]");
         throneRoomDecision();}
         if(wishChoice == 2){
-            out.println(userName + "->  \"My QUEEN, I wish to know your identity. I have fought beside you many years yet I do not even know your name nor how you look.\"\n");
+            out.println(ANSI_RED+userName +ANSI_RESET+ " -> \"My "+ANSI_PURPLE+"QUEEN"+ANSI_RESET+", I wish to know your identity. I have fought beside you many years yet I do not even know your name nor how you look.\"\n");
             Thread.sleep(2000);
-            out.println("QUEEN -> \"My brave adventurer I shall grant your wish. I was born in a very distant island, the land of Trinidad & Tobago. I was born with a body defect.");
+            out.println(ANSI_PURPLE+"QUEEN"+ANSI_RESET+" -> \"My brave adventurer I shall grant your wish. I was born in a very distant island, the land of Trinidad & Tobago. I was born with a body defect.");
             Thread.sleep(2000);
             out.println("           I do not have my left leg. I went through a lot of struggle growing up, between the monsters appearing and my disability. But one day, a very powerful");
             Thread.sleep(2000);
@@ -715,13 +715,13 @@ public class FireMagePath {
             Thread.sleep(2000);
             out.println("...");
             Thread.sleep(2000);
-            out.println("QUEEN CLÁUDIA -> So, I, CLÁUDIA, would like to thank you for finding my leg's source of power, the YELLOW BALL");
+            out.println(ANSI_PURPLE+"QUEEN CLÁUDIA"+ANSI_RESET+" -> So, I, "+ANSI_PURPLE+"CLÁUDIA"+ANSI_RESET+", would like to thank you for finding my leg's source of power, the "+ANSI_YELLOW+"YELLOW BALL"+ANSI_RESET);
             ending();
         }
     }
 
     private void ending() throws InterruptedException {
-        out.println("QUEEN CLÁUDIA was left very emotional so you decided to leave her alone in this sensitive moment.");
+        out.println(ANSI_PURPLE+"QUEEN CLÁUDIA"+ANSI_RESET+" was left very emotional so you decided to leave her alone in this sensitive moment.");
         Thread.sleep(2000);
         out.println("While walking away from her you start thinking about what you are going to do with all that treasure. Suddenly...");
         Thread.sleep(2000);
@@ -731,9 +731,9 @@ public class FireMagePath {
         Thread.sleep(2000);
         out.println("You were pierced through the heart!!! You look back at your QUEEN in disbelief");
         Thread.sleep(2000);
-        out.println("QUEEN CLÁUDIA ->  \"I'm truly sorry my brave adventurer, but this information must be kept secret at all costs. Our enemies must never learn the truth");
+        out.println(ANSI_PURPLE+"QUEEN CLÁUDIA"+ANSI_RESET+" -> \"I'm truly sorry my brave adventurer, but this information must be kept secret at all costs. Our enemies must never learn the truth");
         Thread.sleep(2000);
-        out.println("                    Not even you can be trusted. It pains me to do this but it's for the good of all the kingdom. Goodbye " + userName + "\"");
+        out.println("                    Not even you can be trusted. It pains me to do this but it's for the good of all the kingdom. Goodbye " + ANSI_RED+userName+ANSI_RESET + "\"");
         Thread.sleep(2000);
         out.println(ANSI_RED + "YOU ARE DEAD  < = GAME OVER = >" + ANSI_RESET);
         gameLogic.reStart();
